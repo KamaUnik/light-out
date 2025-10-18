@@ -1,5 +1,5 @@
 extends CharacterBody2D
-
+ 
 @export var SPEED = 400
 @export var JMP = -400
 
