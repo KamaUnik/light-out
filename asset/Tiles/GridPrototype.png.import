@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://is8oufvmq4a5"
-path="res://.godot/imported/CharacterTemp-Sheet.png-6065177c542aeb0470227db9b6ddf3f0.ctex"
+uid="uid://bs64j1upe18e1"
+path="res://.godot/imported/GridPrototype.png-ff12ab739eada19df43144515f79dde5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://CharacterTemp-Sheet.png"
-dest_files=["res://.godot/imported/CharacterTemp-Sheet.png-6065177c542aeb0470227db9b6ddf3f0.ctex"]
+source_file="res://asset/Tiles/GridPrototype.png"
+dest_files=["res://.godot/imported/GridPrototype.png-ff12ab739eada19df43144515f79dde5.ctex"]
 
 [params]
 
