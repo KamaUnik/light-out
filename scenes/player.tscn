@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://bvpthgtsv2mvk"]
+[gd_scene load_steps=11 format=3 uid="uid://bvpthgtsv2mvk"]
 
 [ext_resource type="Script" uid="uid://cp6l5qbbnhwyg" path="res://script/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://cgotsdcv1ngsf" path="res://asset/sprites/CharacterTemp-Sheet.png" id="2_g2els"]
+[ext_resource type="PackedScene" uid="uid://b8lriabaejf1a" path="res://scenes/flashlight.tscn" id="3_qhqgy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qhqgy"]
 atlas = ExtResource("2_g2els")
@@ -46,6 +47,9 @@ size = Vector2(20.319847, 20)
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_g2els")
+SPEED = 610
+JMP = -1010
+gravity = 3375
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_fjrip")
@@ -59,6 +63,8 @@ shape = SubResource("RectangleShape2D_g2els")
 limit_smoothed = true
 position_smoothing_enabled = true
 position_smoothing_speed = 7.0
+
+[node name="Flashlight" parent="." instance=ExtResource("3_qhqgy")]
 
 [node name="RoomDetector" type="Area2D" parent="."]
 collision_layer = 2

@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://b8lriabaejf1a"]
+
+[ext_resource type="Texture2D" uid="uid://8hs5iluh6v0a" path="res://asset/sprites/Flashlight.png" id="1_lkaa1"]
+
+[sub_resource type="Gradient" id="Gradient_lkaa1"]
+offsets = PackedFloat32Array(0, 0.47416413, 0.5805471, 0.7082067)
+colors = PackedColorArray(1, 1, 1, 1, 0.31034482, 0.31034482, 0.31034482, 1, 0.2781012, 0.2781012, 0.2781012, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_0ywi5"]
+gradient = SubResource("Gradient_lkaa1")
+width = 104
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 1)
+metadata/_snap_enabled = true
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_lkaa1"]
+polygon = PackedVector2Array(0, 0, 0.061543237, 12.884979, -0.020514412, 9.911522, -0.020514412, -9.911522, 0.057440355, -13.876131)
+
+[node name="Flashlight" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_lkaa1")
+
+[node name="RayGroup" type="Node2D" parent="."]
+
+[node name="RayCast2D" type="RayCast2D" parent="RayGroup"]
+target_position = Vector2(171, 0)
+
+[node name="RayCast2D2" type="RayCast2D" parent="RayGroup"]
+target_position = Vector2(305, -232)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+scale = Vector2(2.3600006, 1.6799994)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_0ywi5")
+texture_scale = 4.38
+height = 731.0
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+scale = Vector2(243.7311, -1.0089267)
+occluder = SubResource("OccluderPolygon2D_lkaa1")
