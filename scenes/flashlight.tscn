@@ -1,21 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://b8lriabaejf1a"]
+[gd_scene load_steps=3 format=3 uid="uid://b8lriabaejf1a"]
 
 [ext_resource type="Texture2D" uid="uid://8hs5iluh6v0a" path="res://asset/sprites/Flashlight.png" id="1_lkaa1"]
-
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_lkaa1"]
-polygon = PackedVector2Array(0.008205765, 6.9380655, 0.041028824, 9.911522, 4.857813, 150.65514, -0.008205765, 428.17776, -0.012308648, -445.02734, 4.82499, -150.65514, 0.041028824, -9.911522, 0.008205765, -6.9380655)
-
-[sub_resource type="Gradient" id="Gradient_lkaa1"]
-offsets = PackedFloat32Array(1)
-colors = PackedColorArray(1, 1, 1, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_0ywi5"]
-gradient = SubResource("Gradient_lkaa1")
-width = 1152
-height = 300
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_lkaa1"]
-size = Vector2(1152, 300)
+[ext_resource type="Texture2D" uid="uid://dr8iesg05qwch" path="res://asset/sprites/light3.png" id="2_0ywi5"]
 
 [node name="Flashlight" type="Node2D"]
 
@@ -30,18 +16,14 @@ target_position = Vector2(171, 0)
 [node name="RayCast2D2" type="RayCast2D" parent="RayGroup"]
 target_position = Vector2(305, -232)
 
-[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
-scale = Vector2(243.7311, -1.0089267)
-occluder = SubResource("OccluderPolygon2D_lkaa1")
-
 [node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(5, -1)
+position = Vector2(24, 0)
+scale = Vector2(1.03, 0.8632106)
 shadow_enabled = true
-texture = SubResource("GradientTexture2D_0ywi5")
+texture = ExtResource("2_0ywi5")
 offset = Vector2(575, 0)
 
 [node name="Area2D" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(578, 1)
-shape = SubResource("RectangleShape2D_lkaa1")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(8, -8, 1152, -144, 1152, 144, 8, 8)
