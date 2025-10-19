@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://bvpthgtsv2mvk"]
+[gd_scene load_steps=12 format=3 uid="uid://bvpthgtsv2mvk"]
 
 [ext_resource type="Script" uid="uid://cp6l5qbbnhwyg" path="res://script/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://cgotsdcv1ngsf" path="res://asset/sprites/CharacterTemp-Sheet.png" id="2_g2els"]
+[ext_resource type="Script" uid="uid://b7irfyrejshp7" path="res://script/rot_f.gd" id="3_dqkch"]
 [ext_resource type="PackedScene" uid="uid://b8lriabaejf1a" path="res://scenes/flashlight.tscn" id="3_qhqgy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qhqgy"]
@@ -60,11 +61,16 @@ scale = Vector2(2.4606485, 1.7033873)
 shape = SubResource("RectangleShape2D_g2els")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+scale = Vector2(6.212964, -5.4315324)
 limit_smoothed = true
 position_smoothing_enabled = true
 position_smoothing_speed = 7.0
 
-[node name="Flashlight" parent="." instance=ExtResource("3_qhqgy")]
+[node name="RotF" type="Node2D" parent="."]
+script = ExtResource("3_dqkch")
+
+[node name="Flashlight" parent="RotF" instance=ExtResource("3_qhqgy")]
+position = Vector2(48, 0)
 
 [node name="RoomDetector" type="Area2D" parent="."]
 collision_layer = 2
