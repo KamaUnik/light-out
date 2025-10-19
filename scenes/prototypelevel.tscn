@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://bs7x4pygni6fn"]
+[gd_scene load_steps=13 format=4 uid="uid://bs7x4pygni6fn"]
 
 [ext_resource type="PackedScene" uid="uid://bvpthgtsv2mvk" path="res://scenes/player.tscn" id="1_jxkde"]
 [ext_resource type="Texture2D" uid="uid://bs64j1upe18e1" path="res://asset/Tiles/GridPrototype.png" id="2_2eio2"]
@@ -8,10 +8,20 @@
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_jxkde"]
 normal = Vector2(0, -0.999)
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_2eio2"]
+polygon = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_ckgwo"]
+polygon = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_m5lii"]
+polygon = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ckgwo"]
 texture = ExtResource("2_2eio2")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
+0:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_2eio2")
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
 1:0/0 = 0
 2:0/0 = 0
@@ -21,8 +31,10 @@ texture_region_size = Vector2i(64, 64)
 1:1/0 = 0
 2:1/0 = 0
 3:1/0 = 0
+3:1/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_ckgwo")
 3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
 4:1/0 = 0
+4:1/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_m5lii")
 4:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
 0:2/0 = 0
 1:2/0 = 0
@@ -42,6 +54,7 @@ texture_region_size = Vector2i(64, 64)
 
 [sub_resource type="TileSet" id="TileSet_m5lii"]
 tile_size = Vector2i(64, 64)
+occlusion_layer_0/light_mask = 1
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_ckgwo")
 

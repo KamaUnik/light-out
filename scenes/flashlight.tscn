@@ -1,9 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://b8lriabaejf1a"]
+[gd_scene load_steps=4 format=3 uid="uid://b8lriabaejf1a"]
 
+[ext_resource type="Texture2D" uid="uid://tddiw22slnwh" path="res://icon.svg" id="1_bh8a8"]
 [ext_resource type="Texture2D" uid="uid://8hs5iluh6v0a" path="res://asset/sprites/Flashlight.png" id="1_lkaa1"]
 [ext_resource type="Texture2D" uid="uid://dr8iesg05qwch" path="res://asset/sprites/light3.png" id="2_0ywi5"]
 
 [node name="Flashlight" type="Node2D"]
+
+[node name="Temp" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(22.604544, 5.3506603)
+texture = ExtResource("1_bh8a8")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_lkaa1")
@@ -17,13 +23,13 @@ target_position = Vector2(171, 0)
 target_position = Vector2(305, -232)
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(24, 0)
+position = Vector2(16, 0)
 scale = Vector2(1.03, 0.8632106)
 shadow_enabled = true
 texture = ExtResource("2_0ywi5")
-offset = Vector2(575, 0)
+offset = Vector2(588.2, 0)
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
-polygon = PackedVector2Array(8, -8, 1152, -144, 1152, 144, 8, 8)
+polygon = PackedVector2Array(8, -8, 1080, -248, 1160, -160, 1200, 0, 1160, 160, 1080, 248, 8, 8)
