@@ -11,7 +11,7 @@ func _ready() -> void:
 	var ray = $RayCast2D
 	original_pos = ray.get_target_position()
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	update_target_pos()
 	check_light()
 	light_debug()
@@ -36,6 +36,7 @@ func exit_zone(origin: Node2D):
 
 func check_light():
 	var ray = $RayCast2D
+	ray.force_raycast_update()
 	if(not ray.is_colliding() and in_area):
 		activate=true
 	else:
