@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://dv6ws043cov0b"]
+
+[node name="conevision2D" type="Node2D"]
