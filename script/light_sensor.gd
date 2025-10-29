@@ -7,6 +7,13 @@ var original_pos: Vector2
 var activate:bool = false
 var in_area:bool
 
+#Light properties
+const deact_size =0.25
+const deact_color = Color(255,0,0,0.5)
+const act_size = 0.50
+const act_color =Color(0,255,0,0.5)
+
+
 func _ready() -> void:
 	var ray = $RayCast2D
 	original_pos = ray.get_target_position()
@@ -36,15 +43,23 @@ func exit_zone(origin: Node2D):
 
 func check_light():
 	var ray = $RayCast2D
+	var light = $PointLight2D
 	ray.force_raycast_update()
 	if(not ray.is_colliding() and in_area):
+		light.color = act_color
+		light.texture_scale = act_size
 		activate=true
 	else:
+		light.color = deact_color
+		light.texture_scale = deact_size
 		activate=false
+
+func getState():
+	return activate
 
 func light_debug():
 	var sprite = $Sprite2D
-	if(activate):
+	if(getState()):
 		sprite.play("Activate")
 	else:
 		sprite.play("Deactivate")

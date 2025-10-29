@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://bdme35xwqgng3"]
+
+[node name="switch" type="Node2D"]
