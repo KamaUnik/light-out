@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dubbi2vvt6o4l" path="res://script/interacting_component.gd" id="1_ofc3v"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_omdnv"]
-radius = 33.13608
+radius = 13.038404
 
 [node name="Interacting_component" type="Node2D"]
 script = ExtResource("1_ofc3v")

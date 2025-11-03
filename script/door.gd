@@ -1,9 +1,24 @@
 extends Node2D
 
+@onready var player = $AnimationPlayer
+var state = false
+
+func _ready() -> void:
+	if( not state):
+		close()
+	else:
+		open()
+	
+
 func open():
-	var player = $AnimationPlayer
 	player.play("act")
 	
 func close():
-	var player = $AnimationPlayer
 	player.play("deact")
+
+func toggle_State():
+	if(state):
+		close()
+	else:
+		open()
+	state = not state

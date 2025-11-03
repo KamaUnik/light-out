@@ -1,7 +1,6 @@
-[gd_scene format=3 uid="uid://c13lr7pma34nj"]
+[gd_scene load_steps=2 format=3 uid="uid://c13lr7pma34nj"]
+
+[ext_resource type="Script" uid="uid://cfaer4ys4o58n" path="res://script/group_comp.gd" id="1_mdad1"]
 
 [node name="group_comp" type="Node2D"]
-
-[node name="Source" type="Node2D" parent="."]
-
-[node name="Machine" type="Node2D" parent="."]
+script = ExtResource("1_mdad1")

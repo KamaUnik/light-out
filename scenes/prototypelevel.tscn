@@ -1,8 +1,11 @@
-[gd_scene load_steps=14 format=4 uid="uid://bs7x4pygni6fn"]
+[gd_scene load_steps=17 format=4 uid="uid://bs7x4pygni6fn"]
 
 [ext_resource type="PackedScene" uid="uid://bvpthgtsv2mvk" path="res://scenes/player.tscn" id="1_jxkde"]
 [ext_resource type="Texture2D" uid="uid://bs64j1upe18e1" path="res://asset/Tiles/GridPrototype.png" id="2_2eio2"]
 [ext_resource type="PackedScene" uid="uid://bkurry01veixc" path="res://scenes/light_sensor.tscn" id="3_ckgwo"]
+[ext_resource type="PackedScene" uid="uid://c13lr7pma34nj" path="res://scenes/group_comp.tscn" id="4_hqs0r"]
+[ext_resource type="PackedScene" uid="uid://bdme35xwqgng3" path="res://scenes/switch.tscn" id="5_jhehc"]
+[ext_resource type="PackedScene" uid="uid://d25ugf62o1fua" path="res://scenes/door.tscn" id="6_pbx1m"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_2eio2"]
 
@@ -136,10 +139,22 @@ position = Vector2(-245, 27)
 [node name="LightSensor" parent="sensor group" instance=ExtResource("3_ckgwo")]
 debugname = "Light1"
 
-[node name="LightSensor2" parent="sensor group" instance=ExtResource("3_ckgwo")]
-position = Vector2(2274, -105)
+[node name="Group1" parent="." instance=ExtResource("4_hqs0r")]
+
+[node name="Source" type="Node2D" parent="Group1"]
+
+[node name="LightSensor3" parent="Group1/Source" instance=ExtResource("3_ckgwo")]
+position = Vector2(2574, -67)
+debugname = "Light3"
+
+[node name="LightSensor2" parent="Group1/Source" instance=ExtResource("3_ckgwo")]
+position = Vector2(2029, -78)
 debugname = "Light2"
 
-[node name="LightSensor3" parent="sensor group" instance=ExtResource("3_ckgwo")]
-position = Vector2(2819, -94)
-debugname = "Light3"
+[node name="switch" parent="Group1/Source" instance=ExtResource("5_jhehc")]
+position = Vector2(2117, 225)
+
+[node name="Machine" type="Node2D" parent="Group1"]
+
+[node name="Door" parent="Group1/Machine" instance=ExtResource("6_pbx1m")]
+position = Vector2(2386, 192)

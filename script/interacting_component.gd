@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var interact_label: Label = $InteractLabel
+@onready var interact_label: Label = $Label
 var current_interactions := []
 var can_interact := true
 
@@ -32,6 +32,7 @@ func _sort_by_nearest(area1, area2):
 
 
 func _on_interact_range_area_entered(area: Area2D) -> void:
+	print("can interactd")
 	current_interactions.push_back(area)
 
 
