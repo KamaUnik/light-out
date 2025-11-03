@@ -126,6 +126,7 @@ shape = SubResource("RectangleShape2D_m5lii")
 [node name="Player" parent="." instance=ExtResource("1_jxkde")]
 
 [node name="Darkness" type="CanvasModulate" parent="."]
+visible = false
 position = Vector2(0, 1)
 color = Color(0.043039218, 0.043039136, 0.04303915, 1)
 

@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cgotsdcv1ngsf" path="res://asset/sprites/CharacterTemp-Sheet.png" id="2_g2els"]
 [ext_resource type="Script" uid="uid://b7irfyrejshp7" path="res://script/rot_f.gd" id="3_dqkch"]
 [ext_resource type="PackedScene" uid="uid://b8lriabaejf1a" path="res://scenes/flashlight.tscn" id="3_qhqgy"]
+[ext_resource type="PackedScene" uid="uid://cjp504vspaok0" path="res://scenes/interacting_component.tscn" id="5_qlg0r"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qhqgy"]
 atlas = ExtResource("2_g2els")
@@ -46,9 +47,6 @@ size = Vector2(20.319847, 27.611967)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g2els"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_dqkch"]
-radius = 63.953106
-
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_g2els")
 SPEED = 610
@@ -83,12 +81,6 @@ collision_mask = 2
 position = Vector2(0, 18)
 shape = SubResource("CircleShape2D_g2els")
 
-[node name="Interact area" type="Area2D" parent="."]
-collision_layer = 8
-collision_mask = 8
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Interact area"]
-position = Vector2(0, 10)
-shape = SubResource("CircleShape2D_dqkch")
+[node name="Interacting_component" parent="." instance=ExtResource("5_qlg0r")]
 
 [connection signal="area_entered" from="RoomDetector" to="." method="_on_room_detector_area_entered"]

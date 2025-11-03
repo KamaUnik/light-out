@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://c13lr7pma34nj"]
+
+[node name="group_comp" type="Node2D"]
+
+[node name="Source" type="Node2D" parent="."]
+
+[node name="Machine" type="Node2D" parent="."]

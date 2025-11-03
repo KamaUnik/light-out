@@ -1,11 +1,15 @@
 extends Node2D
 
-var State:bool =false
+@onready var interactable : Area2D = $Interactable
+@onready var sprite : Area2D = $Sprite2D
+@export var state : bool = false
 
-func toggle_state():
-	var sprite = $Sprite2D
+func _ready() -> void:
+	interactable.interact = _on_interact()
+
+func _on_interact():
 	sprite.frame = 1 - sprite.frame
-	State = not State
-
-func state():
-	return State
+	state = not state
+	
+func get_state():
+	return state

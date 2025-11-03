@@ -54,12 +54,12 @@ func check_light():
 		light.texture_scale = deact_size
 		activate=false
 
-func getState():
+func get_State():
 	return activate
 
 func light_debug():
 	var sprite = $Sprite2D
-	if(getState()):
+	if(get_State()):
 		sprite.play("Activate")
 	else:
 		sprite.play("Deactivate")
