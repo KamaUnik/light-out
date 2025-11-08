@@ -20,7 +20,6 @@ func update_machine():
 
 func check_State():
 	if source_children.any(get_State) !=state:
-		print("state change")
 		update_machine()
 		state = source_children.any(get_State)
 

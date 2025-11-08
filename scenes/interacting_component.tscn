@@ -1,9 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://cjp504vspaok0"]
+[gd_scene load_steps=4 format=3 uid="uid://cjp504vspaok0"]
 
 [ext_resource type="Script" uid="uid://dubbi2vvt6o4l" path="res://script/interacting_component.gd" id="1_ofc3v"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_omdnv"]
-radius = 13.038404
+radius = 41.01219
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ofc3v"]
+blend_mode = 1
+light_mode = 1
 
 [node name="Interacting_component" type="Node2D"]
 script = ExtResource("1_ofc3v")
@@ -16,8 +20,14 @@ collision_mask = 8
 shape = SubResource("CircleShape2D_omdnv")
 
 [node name="Label" type="Label" parent="."]
+light_mask = 2
+visibility_layer = 2
+material = SubResource("CanvasItemMaterial_ofc3v")
 offset_left = -47.0
 offset_top = -64.0
 offset_right = 47.0
 offset_bottom = -41.0
 text = "E to interact"
+
+[connection signal="area_entered" from="InteractRange" to="." method="_on_interact_range_area_entered"]
+[connection signal="area_exited" from="InteractRange" to="." method="_on_interact_range_area_exited"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bvpthgtsv2mvk"]
+[gd_scene load_steps=15 format=3 uid="uid://bvpthgtsv2mvk"]
 
 [ext_resource type="Script" uid="uid://cp6l5qbbnhwyg" path="res://script/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://cgotsdcv1ngsf" path="res://asset/sprites/CharacterTemp-Sheet.png" id="2_g2els"]
@@ -47,6 +47,17 @@ size = Vector2(20.319847, 27.611967)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g2els"]
 
+[sub_resource type="Gradient" id="Gradient_qlg0r"]
+offsets = PackedFloat32Array(0, 0.65045595)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_tuyoq"]
+gradient = SubResource("Gradient_qlg0r")
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_g2els")
 SPEED = 610
@@ -82,5 +93,8 @@ position = Vector2(0, 18)
 shape = SubResource("CircleShape2D_g2els")
 
 [node name="Interacting_component" parent="." instance=ExtResource("5_qlg0r")]
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+texture = SubResource("GradientTexture2D_tuyoq")
 
 [connection signal="area_entered" from="RoomDetector" to="." method="_on_room_detector_area_entered"]

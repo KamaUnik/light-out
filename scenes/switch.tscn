@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://d0mw56ocfqww4" path="res://scenes/interactable.tscn" id="3_nnoiq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4m6b1"]
-radius = 50.159744
+radius = 22.36068
 
 [node name="switch" type="Node2D"]
 script = ExtResource("1_e08h5")
@@ -16,7 +16,8 @@ hframes = 2
 
 [node name="Interactable" parent="." instance=ExtResource("3_nnoiq")]
 collision_layer = 8
-collision_mask = 8
+collision_mask = 0
+interact_name = "E to interact"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable"]
 shape = SubResource("CircleShape2D_4m6b1")

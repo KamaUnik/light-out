@@ -1,0 +1,65 @@
+[gd_scene load_steps=11 format=3 uid="uid://cv55q8fo4c7xk"]
+
+[ext_resource type="Script" uid="uid://dnxbgqhrrnynn" path="res://script/damsel.gd" id="1_55xo8"]
+[ext_resource type="Texture2D" uid="uid://dwx8c4uh587la" path="res://asset/sprites/damsel-Sheet.png" id="1_yl5ty"]
+[ext_resource type="PackedScene" uid="uid://d0mw56ocfqww4" path="res://scenes/interactable.tscn" id="3_7fjjg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7fjjg"]
+atlas = ExtResource("1_yl5ty")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wanj6"]
+atlas = ExtResource("1_yl5ty")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_weer8"]
+atlas = ExtResource("1_yl5ty")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o6rcd"]
+atlas = ExtResource("1_yl5ty")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_td31d"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7fjjg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wanj6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_weer8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o6rcd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_55xo8"]
+size = Vector2(30, 29)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wanj6"]
+radius = 7.071068
+
+[node name="Damsel" type="CharacterBody2D"]
+script = ExtResource("1_55xo8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_td31d")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 17.5)
+shape = SubResource("RectangleShape2D_55xo8")
+
+[node name="Interactable" parent="." instance=ExtResource("3_7fjjg")]
+collision_layer = 16
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable"]
+position = Vector2(0, 18)
+shape = SubResource("CircleShape2D_wanj6")
