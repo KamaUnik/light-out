@@ -60,7 +60,8 @@ texture_region_size = Vector2i(64, 64)
 [sub_resource type="TileSet" id="TileSet_m5lii"]
 tile_size = Vector2i(64, 64)
 occlusion_layer_0/light_mask = 1
-physics_layer_0/collision_layer = 1
+physics_layer_0/collision_layer = 33
+physics_layer_0/collision_mask = 32
 sources/0 = SubResource("TileSetAtlasSource_ckgwo")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2eio2"]
@@ -134,7 +135,6 @@ shape = SubResource("RectangleShape2D_m5lii")
 [node name="Player" parent="." instance=ExtResource("1_jxkde")]
 
 [node name="Damsel" parent="." instance=ExtResource("3_jhehc")]
-visible = false
 position = Vector2(145, 125)
 
 [node name="sensor group" type="Node2D" parent="."]
