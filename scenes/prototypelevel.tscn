@@ -84,7 +84,6 @@ shape = SubResource("WorldBoundaryShape2D_jxkde")
 [node name="TileMapSet" type="Node2D" parent="."]
 
 [node name="Darkness" type="CanvasModulate" parent="TileMapSet"]
-visible = false
 position = Vector2(0, 1)
 color = Color(0.043039218, 0.043039136, 0.04303915, 1)
 

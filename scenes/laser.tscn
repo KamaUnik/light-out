@@ -1,13 +1,71 @@
-[gd_scene load_steps=2 format=3 uid="uid://b4kbc04ip7n77"]
+[gd_scene load_steps=9 format=3 uid="uid://b4kbc04ip7n77"]
 
 [ext_resource type="Script" uid="uid://dx8tuaqwuhi3a" path="res://script/laser.gd" id="1_xmihv"]
+
+[sub_resource type="Curve" id="Curve_xmihv"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.5016077, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_a7dhc"]
+curve = SubResource("Curve_xmihv")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xmihv"]
+particle_flag_disable_z = true
+flatness = 0.262
+initial_velocity_min = 100.29
+initial_velocity_max = 100.29
+gravity = Vector3(0, 0, 0)
+linear_accel_min = -1.1500022
+linear_accel_max = 30.939997
+tangential_accel_min = -20.000002
+tangential_accel_max = 19.999998
+scale_max = 6.73
+scale_curve = SubResource("CurveTexture_a7dhc")
+scale_over_velocity_min = 558.74
+scale_over_velocity_max = 558.74
+hue_variation_min = -2.2351742e-08
+hue_variation_max = -2.2351742e-08
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jjj73"]
+particle_flag_disable_z = true
+spread = 50.0
+initial_velocity_min = 300.0
+initial_velocity_max = 300.0
+gravity = Vector3(0, 98, 0)
+
+[sub_resource type="Curve" id="Curve_a7dhc"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.4855305, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_jjj73"]
+curve = SubResource("Curve_a7dhc")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_412cd"]
+particle_flag_disable_z = true
+spread = 50.0
+initial_velocity_min = 300.0
+initial_velocity_max = 300.0
+gravity = Vector3(0, 98, 0)
+scale_min = 78.36
+scale_max = 167.19
+scale_curve = SubResource("CurveTexture_jjj73")
 
 [node name="laser" type="RayCast2D"]
 target_position = Vector2(1400, 0)
 script = ExtResource("1_xmihv")
+start_distance = 0.0
 is_casting = true
 
 [node name="Line2D" type="Line2D" parent="."]
 points = PackedVector2Array(0, 0, 0, 0)
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+[node name="CastingParticles2D" type="GPUParticles2D" parent="."]
+visible = false
+process_material = SubResource("ParticleProcessMaterial_xmihv")
+
+[node name="BeamParticles2D" type="GPUParticles2D" parent="."]
+process_material = SubResource("ParticleProcessMaterial_jjj73")
+
+[node name="CollisionParticles2D" type="GPUParticles2D" parent="."]
+visible = false
+process_material = SubResource("ParticleProcessMaterial_412cd")

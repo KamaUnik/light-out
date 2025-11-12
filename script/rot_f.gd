@@ -9,3 +9,4 @@ extends Node2D
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	rotation = lerp_angle(rotation,(get_global_mouse_position() - global_position).angle(),50*delta)
+	

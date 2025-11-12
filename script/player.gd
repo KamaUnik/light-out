@@ -3,18 +3,35 @@ extends CharacterBody2D
 @export var SPEED = 400
 @export var JMP = -800
 @export var gravity = 2000
+@onready var flashlight := $RotF/Flashlight
 #var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
+func push_player():
+	var add_v = (get_global_mouse_position() - global_position).normalized()*10ddd aaa 0
+	velocity.x = velocity.x-add_v.x
+	if (not is_on_floor()):
+		velocity.y = velocity.y-add_v.y
+
+
 func _physics_process(delta: float):
+	var is_firing_laser=false
 	if not is_on_floor():
 		velocity.y += gravity*delta
 	if Input.is_action_just_pressed("space") and is_on_floor():
 		velocity.y = JMP
+	if Input.is_action_just_pressed("f"):
+		flashlight.toggle_state()
+	
 	var direction =Input.get_axis("a","d")
 	if direction:
 		velocity.x = direction* SPEED
 	else:
 		velocity.x=move_toward(velocity.x,0,SPEED)
+		
+	if Input.is_action_pressed("leftclick"):
+		is_firing_laser=true
+		push_player()
+	flashlight.firing_laser(is_firing_laser)
 	move_and_slide()
 	
 

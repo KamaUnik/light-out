@@ -35,6 +35,8 @@ position = Vector2(6, 0)
 polygon = PackedVector2Array(8, -8, 1080, -248, 1160, -160, 1200, 0, 1160, 160, 1080, 248, 8, 8)
 
 [node name="laser" parent="." instance=ExtResource("5_o7kai")]
+position = Vector2(21, 0)
+is_casting = false
 
 [connection signal="body_entered" from="VisionCone" to="." method="_on_vision_cone_body_entered"]
 [connection signal="body_exited" from="VisionCone" to="." method="_on_vision_cone_body_exited"]
