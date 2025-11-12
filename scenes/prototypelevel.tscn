@@ -1,9 +1,8 @@
-[gd_scene load_steps=18 format=4 uid="uid://bs7x4pygni6fn"]
+[gd_scene load_steps=17 format=4 uid="uid://bs7x4pygni6fn"]
 
 [ext_resource type="PackedScene" uid="uid://bvpthgtsv2mvk" path="res://scenes/player.tscn" id="1_jxkde"]
 [ext_resource type="Texture2D" uid="uid://bs64j1upe18e1" path="res://asset/Tiles/GridPrototype.png" id="2_2eio2"]
 [ext_resource type="PackedScene" uid="uid://bkurry01veixc" path="res://scenes/light_sensor.tscn" id="3_ckgwo"]
-[ext_resource type="PackedScene" uid="uid://cv55q8fo4c7xk" path="res://scenes/damsel.tscn" id="3_jhehc"]
 [ext_resource type="PackedScene" uid="uid://c13lr7pma34nj" path="res://scenes/group_comp.tscn" id="4_hqs0r"]
 [ext_resource type="PackedScene" uid="uid://bdme35xwqgng3" path="res://scenes/switch.tscn" id="5_jhehc"]
 [ext_resource type="PackedScene" uid="uid://d25ugf62o1fua" path="res://scenes/door.tscn" id="6_pbx1m"]
@@ -85,6 +84,7 @@ shape = SubResource("WorldBoundaryShape2D_jxkde")
 [node name="TileMapSet" type="Node2D" parent="."]
 
 [node name="Darkness" type="CanvasModulate" parent="TileMapSet"]
+visible = false
 position = Vector2(0, 1)
 color = Color(0.043039218, 0.043039136, 0.04303915, 1)
 
@@ -133,9 +133,6 @@ position = Vector2(2751.5, -206)
 shape = SubResource("RectangleShape2D_m5lii")
 
 [node name="Player" parent="." instance=ExtResource("1_jxkde")]
-
-[node name="Damsel" parent="." instance=ExtResource("3_jhehc")]
-position = Vector2(145, 125)
 
 [node name="sensor group" type="Node2D" parent="."]
 position = Vector2(-245, 27)

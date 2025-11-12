@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://b8lriabaejf1a"]
+[gd_scene load_steps=6 format=3 uid="uid://b8lriabaejf1a"]
 
 [ext_resource type="Texture2D" uid="uid://tddiw22slnwh" path="res://icon.svg" id="1_bh8a8"]
 [ext_resource type="Script" uid="uid://cki1j8wne06a8" path="res://script/flashlight.gd" id="1_bis5n"]
 [ext_resource type="Texture2D" uid="uid://8hs5iluh6v0a" path="res://asset/sprites/Flashlight.png" id="1_lkaa1"]
 [ext_resource type="Texture2D" uid="uid://dr8iesg05qwch" path="res://asset/sprites/light3.png" id="2_0ywi5"]
+[ext_resource type="PackedScene" uid="uid://b4kbc04ip7n77" path="res://scenes/laser.tscn" id="5_o7kai"]
 
 [node name="Flashlight" type="Node2D"]
 script = ExtResource("1_bis5n")
@@ -32,6 +33,8 @@ collision_mask = 4
 [node name="VisionCollider" type="CollisionPolygon2D" parent="VisionCone"]
 position = Vector2(6, 0)
 polygon = PackedVector2Array(8, -8, 1080, -248, 1160, -160, 1200, 0, 1160, 160, 1080, 248, 8, 8)
+
+[node name="laser" parent="." instance=ExtResource("5_o7kai")]
 
 [connection signal="body_entered" from="VisionCone" to="." method="_on_vision_cone_body_entered"]
 [connection signal="body_exited" from="VisionCone" to="." method="_on_vision_cone_body_exited"]

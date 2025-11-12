@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4kbc04ip7n77"]
+
+[ext_resource type="Script" uid="uid://dx8tuaqwuhi3a" path="res://script/laser.gd" id="1_xmihv"]
+
+[node name="laser" type="RayCast2D"]
+target_position = Vector2(1400, 0)
+script = ExtResource("1_xmihv")
+is_casting = true
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 0, 0)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
