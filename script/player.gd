@@ -7,7 +7,7 @@ extends CharacterBody2D
 #var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func push_player():
-	var add_v = (get_global_mouse_position() - global_position).normalized()*10ddd aaa 0
+	var add_v = (get_global_mouse_position() - global_position).normalized()*50
 	velocity.x = velocity.x-add_v.x
 	if (not is_on_floor()):
 		velocity.y = velocity.y-add_v.y

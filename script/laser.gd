@@ -7,12 +7,12 @@ extends RayCast2D
 ## Distance in pixels from the origin to start drawing and firing the laser.
 @export var start_distance := 20.0
 ## Base duration of the tween animation in seconds.
-@export var growth_time := 0.1
+@export var growth_time := 0.05
 @export var color := Color.WHITE: set = set_color
 @onready var casting_particles: GPUParticles2D = $CastingParticles2D
 @onready var collision_particles: GPUParticles2D = $CollisionParticles2D
 @onready var beam_particles: GPUParticles2D = $BeamParticles2D
-
+@onready var light: Light2D = $light
 
 
 ## If `true`, the laser is firing.
@@ -24,6 +24,10 @@ var tween: Tween = null
 @onready var line_width := line_2d.width
 
 func _ready() -> void:
+	light.enabled=false
+	beam_particles.emitting = false
+	collision_particles.emitting = false
+	casting_particles.emitting = false
 	set_color(color)
 	set_is_casting(is_casting)
 	line_2d.set_point_position(0,Vector2.RIGHT * start_distance)
@@ -69,6 +73,7 @@ func set_is_casting(new_value: bool) -> void:
 
 	beam_particles.emitting = is_casting
 	casting_particles.emitting = is_casting
+	light.enabled=is_casting
 
 	if not line_2d:
 		return
@@ -90,7 +95,7 @@ func appear() -> void:
 	if tween and tween.is_running():
 		tween.kill()
 	tween = create_tween()
-	tween.tween_property(line_2d, "width", line_width, growth_time * 2.0).from(0.0)
+	tween.tween_property(line_2d, "width", line_width, growth_time * 5.0).from(0.0)
 
 
 func disappear() -> void:
@@ -109,3 +114,4 @@ func set_color(new_color: Color) -> void:
 	casting_particles.modulate = new_color
 	collision_particles.modulate = new_color
 	beam_particles.modulate = new_color
+	light.modulate = new_color

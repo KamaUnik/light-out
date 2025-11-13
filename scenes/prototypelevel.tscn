@@ -70,7 +70,7 @@ size = Vector2(1195, 824)
 size = Vector2(1097, 276)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m5lii"]
-size = Vector2(2137, 1034)
+size = Vector2(4232, 1034)
 
 [node name="Prototypelevel" type="Node2D"]
 
@@ -128,7 +128,7 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RoomManager/Room3/Area2D"]
-position = Vector2(2751.5, -206)
+position = Vector2(3799, -206)
 shape = SubResource("RectangleShape2D_m5lii")
 
 [node name="Player" parent="." instance=ExtResource("1_jxkde")]

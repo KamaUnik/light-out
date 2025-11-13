@@ -1,6 +1,19 @@
-[gd_scene load_steps=9 format=3 uid="uid://b4kbc04ip7n77"]
+[gd_scene load_steps=15 format=3 uid="uid://b4kbc04ip7n77"]
 
 [ext_resource type="Script" uid="uid://dx8tuaqwuhi3a" path="res://script/laser.gd" id="1_xmihv"]
+[ext_resource type="Texture2D" uid="uid://bq2xl6bh4soqp" path="res://asset/sprites/lightline.png" id="2_a7dhc"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_a7dhc"]
+blend_mode = 1
+light_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_xmihv"]
+blend_mode = 1
+light_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_jjj73"]
+blend_mode = 1
+light_mode = 1
 
 [sub_resource type="Curve" id="Curve_xmihv"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.5016077, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -26,12 +39,20 @@ scale_over_velocity_max = 558.74
 hue_variation_min = -2.2351742e-08
 hue_variation_max = -2.2351742e-08
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_412cd"]
+blend_mode = 1
+light_mode = 1
+
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jjj73"]
 particle_flag_disable_z = true
 spread = 50.0
 initial_velocity_min = 300.0
 initial_velocity_max = 300.0
 gravity = Vector3(0, 98, 0)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_q8rul"]
+blend_mode = 1
+light_mode = 1
 
 [sub_resource type="Curve" id="Curve_a7dhc"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.4855305, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -46,26 +67,37 @@ spread = 50.0
 initial_velocity_min = 300.0
 initial_velocity_max = 300.0
 gravity = Vector3(0, 98, 0)
-scale_min = 78.36
-scale_max = 167.19
+scale_min = 0.0
+scale_max = 57.309998
 scale_curve = SubResource("CurveTexture_jjj73")
 
 [node name="laser" type="RayCast2D"]
+material = SubResource("CanvasItemMaterial_a7dhc")
 target_position = Vector2(1400, 0)
 script = ExtResource("1_xmihv")
 start_distance = 0.0
-is_casting = true
+color = Color(1.9614621, 1.9614621, 1.9614621, 1)
 
 [node name="Line2D" type="Line2D" parent="."]
+material = SubResource("CanvasItemMaterial_xmihv")
 points = PackedVector2Array(0, 0, 0, 0)
 
 [node name="CastingParticles2D" type="GPUParticles2D" parent="."]
-visible = false
+material = SubResource("CanvasItemMaterial_jjj73")
 process_material = SubResource("ParticleProcessMaterial_xmihv")
 
 [node name="BeamParticles2D" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_412cd")
+amount = 20
 process_material = SubResource("ParticleProcessMaterial_jjj73")
 
 [node name="CollisionParticles2D" type="GPUParticles2D" parent="."]
-visible = false
+material = SubResource("CanvasItemMaterial_q8rul")
+amount = 20
+lifetime = 0.3
 process_material = SubResource("ParticleProcessMaterial_412cd")
+
+[node name="light" type="PointLight2D" parent="."]
+shadow_enabled = true
+texture = ExtResource("2_a7dhc")
+offset = Vector2(600, 0)
