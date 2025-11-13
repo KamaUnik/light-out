@@ -114,4 +114,4 @@ func set_color(new_color: Color) -> void:
 	casting_particles.modulate = new_color
 	collision_particles.modulate = new_color
 	beam_particles.modulate = new_color
-	light.modulate = new_color
+	light.color = new_color

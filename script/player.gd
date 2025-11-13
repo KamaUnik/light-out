@@ -4,7 +4,35 @@ extends CharacterBody2D
 @export var JMP = -800
 @export var gravity = 2000
 @onready var flashlight := $RotF/Flashlight
+@onready var cooldownTimer: Timer = $CooldownTimer
 #var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+var is_cooling = false
+var fuel = 10
+@export var maxfuel = 10
+
+func refill_fuel():
+	fuel = maxfuel
+
+func firing_laser(delta:float):
+	var is_firing_laser=false
+	
+	if fuel > 0:
+		if Input.is_action_pressed("leftclick"):
+			fuel-= 10*delta
+			is_firing_laser=true
+			push_player()
+		else:
+			fuel+=10*delta
+			if fuel>maxfuel:
+				fuel = maxfuel
+	else:
+		fuel = 0
+		if not is_cooling:
+			cooldownTimer.start()
+			is_cooling =true
+	flashlight.firing_laser(is_firing_laser)
+	print(fuel)
+
 
 func push_player():
 	var add_v = (get_global_mouse_position() - global_position).normalized()*50
@@ -14,7 +42,7 @@ func push_player():
 
 
 func _physics_process(delta: float):
-	var is_firing_laser=false
+
 	if not is_on_floor():
 		velocity.y += gravity*delta
 	if Input.is_action_just_pressed("space") and is_on_floor():
@@ -28,10 +56,7 @@ func _physics_process(delta: float):
 	else:
 		velocity.x=move_toward(velocity.x,0,SPEED)
 		
-	if Input.is_action_pressed("leftclick"):
-		is_firing_laser=true
-		push_player()
-	flashlight.firing_laser(is_firing_laser)
+	firing_laser(delta)
 	move_and_slide()
 	
 
@@ -53,3 +78,7 @@ func _on_room_detector_area_entered(area: Area2D):
 	cam.limit_bottom = cam.limit_top + size.y
 	cam.limit_right = cam.limit_left + size.x
 #
+
+
+func _on_cooldown_timer_timeout() -> void:
+	refill_fuel()

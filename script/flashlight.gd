@@ -24,7 +24,6 @@ func firing_laser(state: bool):
 	else:
 		light.enabled = light_state
 		detect.monitoring = light_state
-	pass
 
 #func detect_sensor():
 	#if Input.is_action_just_pressed("f"):

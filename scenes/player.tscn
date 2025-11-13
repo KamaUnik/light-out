@@ -48,8 +48,8 @@ size = Vector2(20.319847, 27.611967)
 [sub_resource type="CircleShape2D" id="CircleShape2D_g2els"]
 
 [sub_resource type="Gradient" id="Gradient_qlg0r"]
-offsets = PackedFloat32Array(0, 0.65045595)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+offsets = PackedFloat32Array(0, 0.6231003, 0.65045595)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_tuyoq"]
 gradient = SubResource("Gradient_qlg0r")
@@ -98,4 +98,9 @@ shape = SubResource("CircleShape2D_g2els")
 [node name="PointLight2D" type="PointLight2D" parent="."]
 texture = SubResource("GradientTexture2D_tuyoq")
 
+[node name="CooldownTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
 [connection signal="area_entered" from="RoomDetector" to="." method="_on_room_detector_area_entered"]
+[connection signal="timeout" from="CooldownTimer" to="." method="_on_cooldown_timer_timeout"]
