@@ -5,33 +5,36 @@ extends CharacterBody2D
 @export var gravity = 2000
 @onready var flashlight := $RotF/Flashlight
 @onready var cooldownTimer: Timer = $CooldownTimer
+@onready var fuelBar: TextureProgressBar = $FuelBar
 #var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var is_cooling = false
-var fuel = 10
-@export var maxfuel = 10
+var fuel = 5.0
+@export var maxfuel = 5.0
+
+func _ready() -> void:
+	fuelBar.max_value = maxfuel
 
 func refill_fuel():
 	fuel = maxfuel
 
 func firing_laser(delta:float):
 	var is_firing_laser=false
-	
-	if fuel > 0:
+	if fuel > 0.0:
 		if Input.is_action_pressed("leftclick"):
-			fuel-= 10*delta
+			fuel-= 1.0*delta
 			is_firing_laser=true
 			push_player()
 		else:
-			fuel+=10*delta
+			fuel+=3.0*delta
 			if fuel>maxfuel:
 				fuel = maxfuel
 	else:
-		fuel = 0
+		fuel = 0.0
 		if not is_cooling:
 			cooldownTimer.start()
 			is_cooling =true
+	fuelBar.update_value(fuel)
 	flashlight.firing_laser(is_firing_laser)
-	print(fuel)
 
 
 func push_player():
@@ -82,3 +85,4 @@ func _on_room_detector_area_entered(area: Area2D):
 
 func _on_cooldown_timer_timeout() -> void:
 	refill_fuel()
+	is_cooling = false

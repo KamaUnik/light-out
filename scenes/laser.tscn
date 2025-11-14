@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dx8tuaqwuhi3a" path="res://script/laser.gd" id="1_xmihv"]
 [ext_resource type="Texture2D" uid="uid://bq2xl6bh4soqp" path="res://asset/sprites/lightline.png" id="2_a7dhc"]
-[ext_resource type="Texture2D" uid="uid://tddiw22slnwh" path="res://icon.svg" id="2_jjj73"]
+[ext_resource type="AudioStream" uid="uid://d2q6kjbbl7m8v" path="res://asset/Sound/laser.wav" id="3_jjj73"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_a7dhc"]
 blend_mode = 1
@@ -103,7 +103,5 @@ shadow_enabled = true
 texture = ExtResource("2_a7dhc")
 offset = Vector2(700, 0)
 
-[node name="Temp" type="Sprite2D" parent="."]
-visible = false
-scale = Vector2(22.604544, 5.3506603)
-texture = ExtResource("2_jjj73")
+[node name="sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_jjj73")

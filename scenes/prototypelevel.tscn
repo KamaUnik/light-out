@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://bs7x4pygni6fn"]
+[gd_scene load_steps=18 format=4 uid="uid://bs7x4pygni6fn"]
 
 [ext_resource type="PackedScene" uid="uid://bvpthgtsv2mvk" path="res://scenes/player.tscn" id="1_jxkde"]
 [ext_resource type="Texture2D" uid="uid://bs64j1upe18e1" path="res://asset/Tiles/GridPrototype.png" id="2_2eio2"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c13lr7pma34nj" path="res://scenes/group_comp.tscn" id="4_hqs0r"]
 [ext_resource type="PackedScene" uid="uid://bdme35xwqgng3" path="res://scenes/switch.tscn" id="5_jhehc"]
 [ext_resource type="PackedScene" uid="uid://d25ugf62o1fua" path="res://scenes/door.tscn" id="6_pbx1m"]
+[ext_resource type="PackedScene" uid="uid://bw1t7y4ehafb5" path="res://scenes/enemy_debug.tscn" id="7_jhehc"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_2eio2"]
 
@@ -60,7 +61,6 @@ texture_region_size = Vector2i(64, 64)
 tile_size = Vector2i(64, 64)
 occlusion_layer_0/light_mask = 1
 physics_layer_0/collision_layer = 33
-physics_layer_0/collision_mask = 32
 sources/0 = SubResource("TileSetAtlasSource_ckgwo")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2eio2"]
@@ -84,6 +84,7 @@ shape = SubResource("WorldBoundaryShape2D_jxkde")
 [node name="TileMapSet" type="Node2D" parent="."]
 
 [node name="Darkness" type="CanvasModulate" parent="TileMapSet"]
+visible = false
 position = Vector2(0, 1)
 color = Color(0.043039218, 0.043039136, 0.04303915, 1)
 
@@ -161,3 +162,6 @@ position = Vector2(2386, 192)
 
 [node name="switch" parent="." instance=ExtResource("5_jhehc")]
 position = Vector2(180, 161)
+
+[node name="EnemyDebug" parent="." instance=ExtResource("7_jhehc")]
+position = Vector2(2805, 171)

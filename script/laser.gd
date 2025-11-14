@@ -13,6 +13,7 @@ extends RayCast2D
 @onready var collision_particles: GPUParticles2D = $CollisionParticles2D
 @onready var beam_particles: GPUParticles2D = $BeamParticles2D
 @onready var light: Light2D = $light
+@onready var sound: AudioStreamPlayer = $sound
 
 
 ## If `true`, the laser is firing.
@@ -53,6 +54,9 @@ func _physics_process(delta: float) -> void:
 		laser_end_position = to_local(get_collision_point())
 		collision_particles.global_rotation = get_collision_normal().angle()
 		collision_particles.position = laser_end_position
+		if get_collider().name == "enemy":
+			get_collider().hurt(delta)
+			pass
 
 	line_2d.set_point_position(1,laser_end_position)
 	var laser_start_position := line_2d.points[0]
@@ -83,10 +87,12 @@ func set_is_casting(new_value: bool) -> void:
 		line_2d.set_point_position(0,laser_start)
 		line_2d.set_point_position(1,laser_start)
 		casting_particles.position = laser_start
+		sound.play()
 		appear()
 	else:
 		target_position = Vector2.ZERO
 		collision_particles.emitting = false
+		sound.stop() 
 		disappear()
 
 

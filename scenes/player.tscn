@@ -1,10 +1,14 @@
-[gd_scene load_steps=15 format=3 uid="uid://bvpthgtsv2mvk"]
+[gd_scene load_steps=20 format=3 uid="uid://bvpthgtsv2mvk"]
 
 [ext_resource type="Script" uid="uid://cp6l5qbbnhwyg" path="res://script/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://cgotsdcv1ngsf" path="res://asset/sprites/CharacterTemp-Sheet.png" id="2_g2els"]
+[ext_resource type="Texture2D" uid="uid://tddiw22slnwh" path="res://icon.svg" id="2_ur7pv"]
 [ext_resource type="Script" uid="uid://b7irfyrejshp7" path="res://script/rot_f.gd" id="3_dqkch"]
 [ext_resource type="PackedScene" uid="uid://b8lriabaejf1a" path="res://scenes/flashlight.tscn" id="3_qhqgy"]
 [ext_resource type="PackedScene" uid="uid://cjp504vspaok0" path="res://scenes/interacting_component.tscn" id="5_qlg0r"]
+[ext_resource type="Texture2D" uid="uid://cenlhnq00de7s" path="res://asset/sprites/Progressbaroutline.png" id="6_fjrip"]
+[ext_resource type="Script" uid="uid://crbawkrct74du" path="res://script/fuel_bar.gd" id="6_smehm"]
+[ext_resource type="Texture2D" uid="uid://l04lyvx3ulno" path="res://asset/sprites/Progressbarfill.png" id="7_smehm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qhqgy"]
 atlas = ExtResource("2_g2els")
@@ -58,11 +62,20 @@ height = 128
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_smehm"]
+blend_mode = 1
+light_mode = 1
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_g2els")
 SPEED = 610
 JMP = -1010
 gravity = 3375
+
+[node name="Temp" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(22.604544, 5.3506603)
+texture = ExtResource("2_ur7pv")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_fjrip")
@@ -96,11 +109,24 @@ shape = SubResource("CircleShape2D_g2els")
 [node name="Interacting_component" parent="." instance=ExtResource("5_qlg0r")]
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
+scale = Vector2(0.80642587, 0.80642587)
 texture = SubResource("GradientTexture2D_tuyoq")
 
 [node name="CooldownTimer" type="Timer" parent="."]
 wait_time = 5.0
 one_shot = true
+
+[node name="FuelBar" type="TextureProgressBar" parent="."]
+material = SubResource("CanvasItemMaterial_smehm")
+offset_left = -40.0
+offset_top = 41.0
+offset_right = 40.0
+offset_bottom = 61.0
+max_value = 10.0
+step = 0.1
+texture_under = ExtResource("6_fjrip")
+texture_progress = ExtResource("7_smehm")
+script = ExtResource("6_smehm")
 
 [connection signal="area_entered" from="RoomDetector" to="." method="_on_room_detector_area_entered"]
 [connection signal="timeout" from="CooldownTimer" to="." method="_on_cooldown_timer_timeout"]
