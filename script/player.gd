@@ -61,6 +61,9 @@ func _physics_process(delta: float):
 		
 	firing_laser(delta)
 	move_and_slide()
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i)
+		print("Collided with: ", collision.get_collider().name)
 	
 
 func _on_room_detector_area_entered(area: Area2D):

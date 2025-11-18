@@ -64,13 +64,13 @@ physics_layer_0/collision_layer = 33
 sources/0 = SubResource("TileSetAtlasSource_ckgwo")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2eio2"]
-size = Vector2(1195, 824)
+size = Vector2(1195, 1598)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ckgwo"]
-size = Vector2(1097, 276)
+size = Vector2(1097, 1064)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m5lii"]
-size = Vector2(4232, 1034)
+size = Vector2(4232, 1699)
 
 [node name="Prototypelevel" type="Node2D"]
 
@@ -103,13 +103,14 @@ tile_set = SubResource("TileSet_m5lii")
 [node name="RoomManager" type="Node2D" parent="."]
 
 [node name="Room" type="Node2D" parent="RoomManager"]
+scale = Vector2(1.0226765, 1)
 
 [node name="Area2D" type="Area2D" parent="RoomManager/Room"]
 collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RoomManager/Room/Area2D"]
-position = Vector2(-11.5, -101)
+position = Vector2(-11.5, -16)
 shape = SubResource("RectangleShape2D_2eio2")
 
 [node name="Tunnel" type="Node2D" parent="RoomManager"]
@@ -119,7 +120,7 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RoomManager/Tunnel/Area2D"]
-position = Vector2(1134.5, 173)
+position = Vector2(1134.5, 279)
 shape = SubResource("RectangleShape2D_ckgwo")
 
 [node name="Room3" type="Node2D" parent="RoomManager"]
@@ -129,7 +130,7 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RoomManager/Room3/Area2D"]
-position = Vector2(3799, -206)
+position = Vector2(3799, -43.5)
 shape = SubResource("RectangleShape2D_m5lii")
 
 [node name="Player" parent="." instance=ExtResource("1_jxkde")]

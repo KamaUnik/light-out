@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://dqd5r4k3g784l"]
+
+[ext_resource type="PackedScene" uid="uid://cs3xw7mwjupka" path="res://scenes/heart.tscn" id="1_jqfdb"]
+[ext_resource type="Script" uid="uid://bsydfa7h8qvtt" path="res://script/heart_container.gd" id="1_srcrn"]
+
+[node name="HeartContainer" type="HBoxContainer"]
+layout_direction = 2
+offset_right = 200.0
+offset_bottom = 64.0
+script = ExtResource("1_srcrn")
+
+[node name="heart1" parent="." instance=ExtResource("1_jqfdb")]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+
+[node name="heart2" parent="." instance=ExtResource("1_jqfdb")]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+
+[node name="heart3" parent="." instance=ExtResource("1_jqfdb")]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
