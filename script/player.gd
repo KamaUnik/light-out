@@ -6,10 +6,13 @@ extends CharacterBody2D
 @onready var flashlight := $RotF/Flashlight
 @onready var cooldownTimer: Timer = $CooldownTimer
 @onready var fuelBar: TextureProgressBar = $FuelBar
+@onready var camera: Camera2D = $Camera2D
+var hp =3
+#@onready var healthBar: HBoxContainer = $CanvasLayer/HeartContainer
 #var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var is_cooling = false
 var fuel = 5.0
-@export var maxfuel = 5.0
+@export var maxfuel:float = 5.0
 
 func _ready() -> void:
 	fuelBar.max_value = maxfuel
@@ -61,9 +64,9 @@ func _physics_process(delta: float):
 		
 	firing_laser(delta)
 	move_and_slide()
-	for i in get_slide_collision_count():
-		var collision = get_slide_collision(i)
-		print("Collided with: ", collision.get_collider().name)
+	#for i in get_slide_collision_count():
+		#var collision = get_slide_collision(i)
+		#print("Collided with: ", collision.get_collider().name)
 	
 
 func _on_room_detector_area_entered(area: Area2D):
@@ -81,6 +84,9 @@ func _on_room_detector_area_entered(area: Area2D):
 	cam.limit_top = collision_shape.global_position.y - size.y/2
 	cam.limit_left = collision_shape.global_position.x - size.x/2
 	
+	#healthBar.position.y = cam.limit_top+10
+	#healthBar.position.x = cam.limit_left+10
+	
 	cam.limit_bottom = cam.limit_top + size.y
 	cam.limit_right = cam.limit_left + size.x
 #
@@ -89,3 +95,15 @@ func _on_room_detector_area_entered(area: Area2D):
 func _on_cooldown_timer_timeout() -> void:
 	refill_fuel()
 	is_cooling = false
+
+var invul = false
+@onready var invultimer:Timer = $Invul
+func hurt():
+	if not invul:
+		print("Player is hurt")
+		hp-=1
+		invul = true
+		invultimer.start()
+func _on_invul_timeout() -> void:
+	invul=false
+	print("No longer invul")

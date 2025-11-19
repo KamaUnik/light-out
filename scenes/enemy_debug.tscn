@@ -9,6 +9,7 @@ script = ExtResource("1_ebxje")
 [node name="Position" type="Node2D" parent="."]
 
 [node name="enemy" parent="Position" instance=ExtResource("2_o4lq1")]
+motion_mode = 1
 
 [node name="Button" type="Button" parent="."]
 offset_left = 25.0

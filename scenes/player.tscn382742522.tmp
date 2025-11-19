@@ -72,6 +72,7 @@ script = ExtResource("1_g2els")
 SPEED = 610
 JMP = -1010
 gravity = 3375
+maxfuel = null
 
 [node name="Temp" type="Sprite2D" parent="."]
 visible = false
@@ -90,6 +91,12 @@ shape = SubResource("RectangleShape2D_g2els")
 limit_smoothed = true
 position_smoothing_enabled = true
 position_smoothing_speed = 7.0
+
+[node name="HeartContainer" parent="Camera2D" instance=ExtResource("10_y4r1p")]
+offset_left = -778.0
+offset_top = -442.0
+offset_right = -578.0
+offset_bottom = -378.0
 
 [node name="RotF" type="Node2D" parent="."]
 script = ExtResource("3_dqkch")
@@ -127,20 +134,5 @@ texture_under = ExtResource("6_fjrip")
 texture_progress = ExtResource("7_smehm")
 script = ExtResource("6_smehm")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-process_mode = 3
-
-[node name="HeartContainer" parent="CanvasLayer" instance=ExtResource("10_y4r1p")]
-top_level = true
-offset_left = 26.0
-offset_top = 25.0
-offset_right = 226.0
-offset_bottom = 89.0
-
-[node name="Invul" type="Timer" parent="."]
-wait_time = 3.0
-one_shot = true
-
 [connection signal="area_entered" from="RoomDetector" to="." method="_on_room_detector_area_entered"]
 [connection signal="timeout" from="CooldownTimer" to="." method="_on_cooldown_timer_timeout"]
-[connection signal="timeout" from="Invul" to="." method="_on_invul_timeout"]
