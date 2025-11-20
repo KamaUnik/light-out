@@ -8,11 +8,11 @@ extends CharacterBody2D
 @onready var fuelBar: TextureProgressBar = $FuelBar
 @onready var camera: Camera2D = $Camera2D
 var hp =3
-#@onready var healthBar: HBoxContainer = $CanvasLayer/HeartContainer
+@onready var healthBar: HBoxContainer = $UI/HeartContainer
 #var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var is_cooling = false
-var fuel = 5.0
-@export var maxfuel:float = 5.0
+var fuel = 3.0
+@export var maxfuel:float = 3.0
 
 func _ready() -> void:
 	fuelBar.max_value = maxfuel
@@ -20,19 +20,25 @@ func _ready() -> void:
 func refill_fuel():
 	fuel = maxfuel
 
+var leftclickhold = false
 func firing_laser(delta:float):
 	var is_firing_laser=false
 	if fuel > 0.0:
 		if Input.is_action_pressed("leftclick"):
 			fuel-= 1.0*delta
 			is_firing_laser=true
-			push_player()
+			if not leftclickhold:
+				push_player()
+				fuel-= 0.8
+			leftclickhold = true
 		else:
-			fuel+=3.0*delta
+			leftclickhold = false
+			fuel+=0.3*delta
 			if fuel>maxfuel:
 				fuel = maxfuel
 	else:
 		fuel = 0.0
+		flashlight.is_usable(false)
 		if not is_cooling:
 			cooldownTimer.start()
 			is_cooling =true
@@ -41,14 +47,12 @@ func firing_laser(delta:float):
 
 
 func push_player():
-	var add_v = (get_global_mouse_position() - global_position).normalized()*50
-	velocity.x = velocity.x-add_v.x
-	if (not is_on_floor()):
-		velocity.y = velocity.y-add_v.y
+	var add_v = (get_global_mouse_position() - global_position).normalized()*800
+	velocity = velocity-add_v
+
 
 
 func _physics_process(delta: float):
-
 	if not is_on_floor():
 		velocity.y += gravity*delta
 	if Input.is_action_just_pressed("space") and is_on_floor():
@@ -93,17 +97,23 @@ func _on_room_detector_area_entered(area: Area2D):
 
 
 func _on_cooldown_timer_timeout() -> void:
-	refill_fuel()
+	fuel+=0.01
+	flashlight.is_usable(true)
 	is_cooling = false
 
 var invul = false
 @onready var invultimer:Timer = $Invul
 func hurt():
-	if not invul:
-		print("Player is hurt")
-		hp-=1
-		invul = true
-		invultimer.start()
+	if invul:
+		return
+	print("Player is hurt")
+	hp-=1
+	invul = true
+	healthBar.update_value(hp)
+	invultimer.start()
+	if hp ==0:
+		print("Player should be deadd")
+		
 func _on_invul_timeout() -> void:
 	invul=false
 	print("No longer invul")

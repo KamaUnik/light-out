@@ -13,6 +13,7 @@ extends Node2D
 	#pass
 
 
-func _on_button_pressed() -> void:
+
+func _on_button_button_down() -> void:
 	var instance = enemy.instantiate()
-	pos.add_child(instance)
+	pos.add_child(instance) # Replace with function body.

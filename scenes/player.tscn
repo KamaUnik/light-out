@@ -112,7 +112,7 @@ scale = Vector2(0.80642587, 0.80642587)
 texture = SubResource("GradientTexture2D_tuyoq")
 
 [node name="CooldownTimer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 2.0
 one_shot = true
 
 [node name="FuelBar" type="TextureProgressBar" parent="."]
@@ -127,10 +127,10 @@ texture_under = ExtResource("6_fjrip")
 texture_progress = ExtResource("7_smehm")
 script = ExtResource("6_smehm")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="UI" type="CanvasLayer" parent="."]
 process_mode = 3
 
-[node name="HeartContainer" parent="CanvasLayer" instance=ExtResource("10_y4r1p")]
+[node name="HeartContainer" parent="UI" instance=ExtResource("10_y4r1p")]
 top_level = true
 offset_left = 26.0
 offset_top = 25.0

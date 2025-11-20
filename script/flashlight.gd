@@ -9,6 +9,7 @@ extends Node2D
 @onready var detect = $VisionCone
 @onready var laser = $laser
 var light_state = false
+var usable = true
 
 func toggle_state():
 	light_state = not light_state
@@ -18,7 +19,7 @@ func toggle_state():
 	
 func firing_laser(state: bool):
 	laser.set_is_casting(state)
-	if(state):
+	if(state or not usable):
 		light.enabled=false
 		detect.monitoring = false
 	else:
@@ -33,6 +34,9 @@ func firing_laser(state: bool):
 #func _process(delta: float) -> void:
 	#detect_sensor()
 
+func is_usable(state:bool):
+	usable = state
+	
 
 func _on_vision_cone_body_entered(body: Node2D) -> void:
 	var origin = $"."

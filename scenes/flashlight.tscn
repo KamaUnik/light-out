@@ -18,13 +18,15 @@ texture = ExtResource("1_bh8a8")
 position = Vector2(12, -0.0368042)
 texture = ExtResource("1_lkaa1")
 
+[node name="Sprite2D" type="Sprite2D" parent="Sprite2D"]
+
 [node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(20, -0.0368042)
+position = Vector2(-10, 0)
 scale = Vector2(1.03, 0.8632106)
 color = Color(1, 1, 1, 0.5294118)
 shadow_enabled = true
 texture = ExtResource("2_0ywi5")
-offset = Vector2(589.995, 0)
+offset = Vector2(615.45, 0)
 
 [node name="VisionCone" type="Area2D" parent="."]
 collision_layer = 4
