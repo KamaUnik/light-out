@@ -85,15 +85,18 @@ points = PackedVector2Array(0, 0, 0, 0)
 
 [node name="CastingParticles2D" type="GPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_jjj73")
+emitting = false
 process_material = SubResource("ParticleProcessMaterial_xmihv")
 
 [node name="BeamParticles2D" type="GPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_412cd")
+emitting = false
 amount = 20
 process_material = SubResource("ParticleProcessMaterial_jjj73")
 
 [node name="CollisionParticles2D" type="GPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_q8rul")
+emitting = false
 amount = 20
 lifetime = 0.3
 process_material = SubResource("ParticleProcessMaterial_412cd")

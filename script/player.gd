@@ -25,7 +25,7 @@ func firing_laser(delta:float):
 	var is_firing_laser=false
 	if fuel > 0.0:
 		if Input.is_action_pressed("leftclick"):
-			fuel-= 1.0*delta
+			fuel-= 0.5*delta
 			is_firing_laser=true
 			if not leftclickhold:
 				push_player()
@@ -103,6 +103,8 @@ func _on_cooldown_timer_timeout() -> void:
 
 var invul = false
 @onready var invultimer:Timer = $Invul
+
+
 func hurt():
 	if invul:
 		return
@@ -112,8 +114,12 @@ func hurt():
 	healthBar.update_value(hp)
 	invultimer.start()
 	if hp ==0:
-		print("Player should be deadd")
+		print("Player should be dead")
 		
 func _on_invul_timeout() -> void:
 	invul=false
 	print("No longer invul")
+
+
+func _on_hurt_box_received_damage() -> void:
+	hurt()

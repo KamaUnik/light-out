@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://d0rmipoeqxov3"]
+[gd_scene load_steps=11 format=3 uid="uid://d0rmipoeqxov3"]
 
 [ext_resource type="Texture2D" uid="uid://dwx8c4uh587la" path="res://asset/sprites/damsel-Sheet.png" id="1_7p1mj"]
 [ext_resource type="Script" uid="uid://cj2nya5nchvpt" path="res://script/enemy.gd" id="1_md0e3"]
+[ext_resource type="PackedScene" uid="uid://b7dxhu18jxv1p" path="res://scenes/hitbox.tscn" id="3_4ra3w"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_md0e3"]
 atlas = ExtResource("1_7p1mj")
@@ -42,6 +43,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nenq2"]
 size = Vector2(30, 36)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ra3w"]
+size = Vector2(36, 39)
+
 [node name="enemy" type="CharacterBody2D"]
 script = ExtResource("1_md0e3")
 
@@ -59,3 +63,11 @@ target_position = Vector2(22, 0)
 [node name="RayLeft" type="RayCast2D" parent="."]
 position = Vector2(0, 11)
 target_position = Vector2(-22, 0)
+
+[node name="Hitbox" parent="." instance=ExtResource("3_4ra3w")]
+collision_layer = 64
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, 13)
+shape = SubResource("RectangleShape2D_4ra3w")

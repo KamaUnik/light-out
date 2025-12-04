@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bvpthgtsv2mvk"]
+[gd_scene load_steps=23 format=3 uid="uid://bvpthgtsv2mvk"]
 
 [ext_resource type="Script" uid="uid://cp6l5qbbnhwyg" path="res://script/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://cgotsdcv1ngsf" path="res://asset/sprites/CharacterTemp-Sheet.png" id="2_g2els"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://crbawkrct74du" path="res://script/fuel_bar.gd" id="6_smehm"]
 [ext_resource type="Texture2D" uid="uid://l04lyvx3ulno" path="res://asset/sprites/Progressbarfill.png" id="7_smehm"]
 [ext_resource type="PackedScene" uid="uid://dqd5r4k3g784l" path="res://scenes/heart_container.tscn" id="10_y4r1p"]
+[ext_resource type="PackedScene" uid="uid://bgpxsq2qn7c8n" path="res://scenes/hurt_box.tscn" id="11_d2wvv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qhqgy"]
 atlas = ExtResource("2_g2els")
@@ -66,6 +67,9 @@ fill_from = Vector2(0.5, 0.5)
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_smehm"]
 blend_mode = 1
 light_mode = 1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d2wvv"]
+size = Vector2(56, 54)
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_g2els")
@@ -141,6 +145,15 @@ offset_bottom = 89.0
 wait_time = 3.0
 one_shot = true
 
+[node name="HurtBox" parent="." instance=ExtResource("11_d2wvv")]
+collision_layer = 0
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_d2wvv")
+
 [connection signal="area_entered" from="RoomDetector" to="." method="_on_room_detector_area_entered"]
 [connection signal="timeout" from="CooldownTimer" to="." method="_on_cooldown_timer_timeout"]
 [connection signal="timeout" from="Invul" to="." method="_on_invul_timeout"]
+[connection signal="received_damage" from="HurtBox" to="." method="_on_hurt_box_received_damage"]

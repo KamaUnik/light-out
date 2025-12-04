@@ -1,14 +1,22 @@
 extends CharacterBody2D
 
+
 const SPEED = 300.0
 @export var hp:float = 100.0
+@onready var ray_r = $Rayright
+@onready var ray_l = $RayLeft
+var direction = 1
 
-func _physics_process(_adelta: float) -> void:
-	move_and_slide()
-	for i in get_slide_collision_count():
-		var collision = get_slide_collision(i)
-		if collision.get_collider().name == "Player":
-			collision.get_collider().hurt()
+func _to_string():
+	return "Enemy"
+
+
+func _physics_process(delta: float) -> void:
+	if ray_r.is_colliding():
+		direction = -1
+	if ray_l.is_colliding():
+		direction = 1
+	position.x += direction*SPEED*delta
 
 func hurt(delta:float):
 	hp-=delta*70

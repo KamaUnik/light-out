@@ -54,9 +54,9 @@ func _physics_process(delta: float) -> void:
 		laser_end_position = to_local(get_collision_point())
 		collision_particles.global_rotation = get_collision_normal().angle()
 		collision_particles.position = laser_end_position
-		if get_collider().name == "enemy":
+		if str(get_collider()) == 'Enemy':
 			get_collider().hurt(delta)
-			pass
+			#pass
 
 	line_2d.set_point_position(1,laser_end_position)
 	var laser_start_position := line_2d.points[0]
