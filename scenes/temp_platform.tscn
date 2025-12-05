@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dglvl5xtyndmg"]
+
+[ext_resource type="Texture2D" uid="uid://cxfivlvrlpag7" path="res://asset/sprites/TempPlatform.png" id="1_geesh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1v276"]
+size = Vector2(64, 20)
+
+[node name="TempPlatform" type="CharacterBody2D"]
+light_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_1v276")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_geesh")
