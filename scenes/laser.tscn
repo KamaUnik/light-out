@@ -109,6 +109,7 @@ process_material = SubResource("ParticleProcessMaterial_412cd")
 
 [node name="light" type="PointLight2D" parent="."]
 shadow_enabled = true
+shadow_item_cull_mask = 5
 texture = ExtResource("2_a7dhc")
 offset = Vector2(700, 0)
 

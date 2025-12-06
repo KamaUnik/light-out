@@ -1,0 +1,97 @@
+[gd_scene load_steps=8 format=3 uid="uid://datywr7hrxp4e"]
+
+[ext_resource type="Script" uid="uid://cswxgvsioe0nn" path="res://script/light.gd" id="1_2e2gu"]
+[ext_resource type="Texture2D" uid="uid://4bniece3cgx1" path="res://asset/sprites/Lightsheet.png" id="1_24oxn"]
+
+[sub_resource type="Gradient" id="Gradient_ky1i4"]
+offsets = PackedFloat32Array(0.51367784, 0.5987842, 0.7537994)
+colors = PackedColorArray(1, 1, 1, 1, 0.04494387, 0.04494387, 0.04494387, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_gr6e6"]
+gradient = SubResource("Gradient_ky1i4")
+width = 600
+height = 600
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0, 1)
+metadata/_snap_enabled = true
+
+[sub_resource type="Animation" id="Animation_24oxn"]
+resource_name = "on"
+length = 0.03333667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PointLight2D:enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_2e2gu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PointLight2D:enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ky1i4"]
+_data = {
+&"RESET": SubResource("Animation_2e2gu"),
+&"on": SubResource("Animation_24oxn")
+}
+
+[node name="Light" type="Node2D"]
+script = ExtResource("1_2e2gu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("1_24oxn")
+hframes = 2
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+enabled = false
+color = Color(1, 0.24070099, 0.22565526, 1)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_gr6e6")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ky1i4")
+}

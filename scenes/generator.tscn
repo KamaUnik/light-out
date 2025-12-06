@@ -1,0 +1,78 @@
+[gd_scene load_steps=12 format=3 uid="uid://dqh1mlqu0822r"]
+
+[ext_resource type="Texture2D" uid="uid://ctac1agww0nlp" path="res://asset/sprites/Generatorsheet.png" id="1_5yxne"]
+[ext_resource type="Script" uid="uid://c5h6psf31w0qo" path="res://script/generator.gd" id="1_w5vnv"]
+[ext_resource type="Texture2D" uid="uid://cenlhnq00de7s" path="res://asset/sprites/Progressbaroutline.png" id="3_rqoq6"]
+[ext_resource type="Texture2D" uid="uid://l04lyvx3ulno" path="res://asset/sprites/Progressbarfill.png" id="4_4pjfl"]
+[ext_resource type="AudioStream" uid="uid://hmm6env6l2j0" path="res://asset/Sound/engine.mp3" id="5_4pjfl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w5vnv"]
+size = Vector2(90, 88)
+
+[sub_resource type="Gradient" id="Gradient_w5vnv"]
+offsets = PackedFloat32Array(0.18237083, 0.56838906)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ef8yp"]
+gradient = SubResource("Gradient_w5vnv")
+width = 120
+height = 120
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+metadata/_snap_enabled = true
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_rqoq6"]
+polygon = PackedVector2Array(-46, -36, -46, 52, 44, 52, 44, -36)
+
+[sub_resource type="Animation" id="Animation_kgmdj"]
+resource_name = "activate"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ionxw"]
+_data = {
+&"activate": SubResource("Animation_kgmdj")
+}
+
+[node name="Generator" type="CharacterBody2D"]
+light_mask = 4
+script = ExtResource("1_w5vnv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("1_5yxne")
+hframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+light_mask = 4
+visibility_layer = 4
+position = Vector2(-1, 8)
+shape = SubResource("RectangleShape2D_w5vnv")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(-14, 10)
+enabled = false
+color = Color(0.05490196, 1, 0, 1)
+texture = SubResource("GradientTexture2D_ef8yp")
+
+[node name="Bar" type="TextureProgressBar" parent="."]
+visible = false
+offset_left = -41.0
+offset_top = -65.0
+offset_right = 39.0
+offset_bottom = -45.0
+max_value = 5.0
+step = 0.2
+texture_under = ExtResource("3_rqoq6")
+texture_over = ExtResource("3_rqoq6")
+texture_progress = ExtResource("4_4pjfl")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_rqoq6")
+occluder_light_mask = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ionxw")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_4pjfl")

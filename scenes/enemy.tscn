@@ -1,67 +1,74 @@
 [gd_scene load_steps=11 format=3 uid="uid://d0rmipoeqxov3"]
 
-[ext_resource type="Texture2D" uid="uid://dwx8c4uh587la" path="res://asset/sprites/damsel-Sheet.png" id="1_7p1mj"]
 [ext_resource type="Script" uid="uid://cj2nya5nchvpt" path="res://script/enemy.gd" id="1_md0e3"]
+[ext_resource type="Texture2D" uid="uid://crv4achos7h6k" path="res://asset/sprites/nhornmha.png" id="2_4ra3w"]
 [ext_resource type="PackedScene" uid="uid://b7dxhu18jxv1p" path="res://scenes/hitbox.tscn" id="3_4ra3w"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_md0e3"]
-atlas = ExtResource("1_7p1mj")
-region = Rect2(0, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4ra3w"]
-atlas = ExtResource("1_7p1mj")
-region = Rect2(64, 0, 64, 64)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_5uy6h"]
-atlas = ExtResource("1_7p1mj")
-region = Rect2(128, 0, 64, 64)
+atlas = ExtResource("2_4ra3w")
+region = Rect2(0, 0, 64, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c4w8v"]
-atlas = ExtResource("1_7p1mj")
-region = Rect2(192, 0, 64, 64)
+atlas = ExtResource("2_4ra3w")
+region = Rect2(64, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xwavj"]
+atlas = ExtResource("2_4ra3w")
+region = Rect2(128, 0, 64, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xwavj"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_md0e3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4ra3w")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_5uy6h")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_c4w8v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xwavj")
 }],
 "loop": true,
 "name": &"default",
-"speed": 5.0
+"speed": 4.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nenq2"]
-size = Vector2(30, 36)
+size = Vector2(84, 10)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4ra3w"]
-size = Vector2(36, 39)
+size = Vector2(94, 19)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_4ra3w"]
+polygon = PackedVector2Array(-42, 5, -42, -5, 42, -5, 42, 5)
 
 [node name="enemy" type="CharacterBody2D"]
 script = ExtResource("1_md0e3")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_xwavj")
+autoplay = "default"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 14)
 shape = SubResource("RectangleShape2D_nenq2")
 
+[node name="Raybottomright" type="RayCast2D" parent="."]
+position = Vector2(47, 8)
+rotation = 1.5707964
+target_position = Vector2(16, 0)
+
 [node name="Rayright" type="RayCast2D" parent="."]
-position = Vector2(0, 11)
+position = Vector2(31, 1)
 target_position = Vector2(22, 0)
 
+[node name="Raybottomleft" type="RayCast2D" parent="."]
+position = Vector2(-47, 9)
+rotation = 1.5707964
+target_position = Vector2(15, 0)
+
 [node name="RayLeft" type="RayCast2D" parent="."]
-position = Vector2(0, 11)
+position = Vector2(-31, 1)
 target_position = Vector2(-22, 0)
 
 [node name="Hitbox" parent="." instance=ExtResource("3_4ra3w")]
@@ -69,5 +76,9 @@ collision_layer = 64
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(0, 13)
+position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_4ra3w")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_4ra3w")
+occluder_light_mask = 4

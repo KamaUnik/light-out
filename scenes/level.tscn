@@ -1,0 +1,123 @@
+[gd_scene load_steps=10 format=3 uid="uid://228c4ff010sm"]
+
+[ext_resource type="Script" uid="uid://5ftw8isl68il" path="res://script/level.gd" id="1_w7c3h"]
+[ext_resource type="PackedScene" uid="uid://ykp7ur6oqw4c" path="res://scenes/goal_screen.tscn" id="2_mx8sn"]
+[ext_resource type="PackedScene" uid="uid://df6j4wvrlwk3k" path="res://scenes/game_over.tscn" id="2_w8frs"]
+
+[sub_resource type="Gradient" id="Gradient_w7c3h"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_w8frs"]
+gradient = SubResource("Gradient_w7c3h")
+
+[sub_resource type="Animation" id="Animation_w8frs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transition:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Transition/TextureRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_mx8sn"]
+resource_name = "hide"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transition:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.033333335),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Transition/TextureRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_w7c3h"]
+resource_name = "show"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transition:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Transition/TextureRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mx8sn"]
+_data = {
+&"RESET": SubResource("Animation_w8frs"),
+&"hide": SubResource("Animation_mx8sn"),
+&"show": SubResource("Animation_w7c3h")
+}
+
+[node name="level" type="Node2D"]
+script = ExtResource("1_w7c3h")
+
+[node name="GoalScreen" parent="." instance=ExtResource("2_mx8sn")]
+
+[node name="GameOver" parent="." instance=ExtResource("2_w8frs")]
+
+[node name="Transition" type="CanvasLayer" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="Transition"]
+offset_right = 1600.0
+offset_bottom = 900.0
+texture = SubResource("GradientTexture2D_w8frs")
+metadata/_edit_use_anchors_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_mx8sn")
+}
+
+[connection signal="retry_pressed" from="GoalScreen" to="." method="_on_goal_screen_retry_pressed"]
+[connection signal="retry_pressed" from="GameOver" to="." method="_on_game_over_retry_pressed"]

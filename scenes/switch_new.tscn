@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://7i7vr8cn5l85"]
+
+[ext_resource type="Script" uid="uid://7hc5pdned7pl" path="res://scenes/switch_new.gd" id="1_uvfy5"]
+[ext_resource type="Texture2D" uid="uid://b18ovvxspmm0a" path="res://asset/sprites/switch-Sheet.png" id="2_lltxr"]
+[ext_resource type="PackedScene" uid="uid://d0mw56ocfqww4" path="res://scenes/interactable.tscn" id="3_m4g30"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4m6b1"]
+radius = 22.36068
+
+[node name="switch_new" type="Node2D"]
+script = ExtResource("1_uvfy5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_lltxr")
+hframes = 2
+
+[node name="Interactable" parent="." instance=ExtResource("3_m4g30")]
+collision_layer = 8
+collision_mask = 0
+interact_name = "E to interact"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable"]
+shape = SubResource("CircleShape2D_4m6b1")

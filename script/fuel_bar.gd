@@ -6,7 +6,7 @@ extends TextureProgressBar
 func _ready() -> void:
 	modulate = ogColor
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	var new_color =ogColor
 	if (value/ max_value) > 0.5:
 		new_color = ogColor+ (heatColor - ogColor)*(((value/ max_value)-0.5)*2)

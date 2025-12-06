@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://bvpthgtsv2mvk"]
+[gd_scene load_steps=36 format=3 uid="uid://bvpthgtsv2mvk"]
 
 [ext_resource type="Script" uid="uid://cp6l5qbbnhwyg" path="res://script/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://cqdlndqea0rax" path="res://asset/sprites/JohnTofuSheet.png" id="3_d2wvv"]
@@ -9,24 +9,8 @@
 [ext_resource type="Script" uid="uid://crbawkrct74du" path="res://script/fuel_bar.gd" id="6_smehm"]
 [ext_resource type="Texture2D" uid="uid://l04lyvx3ulno" path="res://asset/sprites/Progressbarfill.png" id="7_smehm"]
 [ext_resource type="PackedScene" uid="uid://dqd5r4k3g784l" path="res://scenes/heart_container.tscn" id="10_y4r1p"]
+[ext_resource type="PackedScene" uid="uid://d0l1bph3oq25u" path="res://scenes/goalbox.tscn" id="11_3v2ag"]
 [ext_resource type="PackedScene" uid="uid://bgpxsq2qn7c8n" path="res://scenes/hurt_box.tscn" id="11_d2wvv"]
-
-[sub_resource type="Animation" id="Animation_y4r1p"]
-resource_name = "idle"
-length = 0.5333367
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.13467589, 0.26935178, 0.4001798),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3]
-}
 
 [sub_resource type="Animation" id="Animation_d2wvv"]
 length = 0.001
@@ -55,10 +39,9 @@ tracks/1/keys = {
 "values": [Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_3v2ag"]
-resource_name = "run"
-length = 0.5333367
-loop_mode = 1
+[sub_resource type="Animation" id="Animation_f1ej7"]
+resource_name = "air"
+length = 0.03333667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -66,10 +49,10 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.13467589, 0.26838982, 0.4030657),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [4, 5, 6, 7]
+"values": [13]
 }
 
 [sub_resource type="Animation" id="Animation_jej6c"]
@@ -100,22 +83,6 @@ tracks/1/keys = {
 "values": [Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_f1ej7"]
-resource_name = "air"
-length = 0.03333667
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [13]
-}
-
 [sub_resource type="Animation" id="Animation_oprun"]
 resource_name = "hurt"
 length = 0.03333667
@@ -130,6 +97,40 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [12]
+}
+
+[sub_resource type="Animation" id="Animation_y4r1p"]
+resource_name = "idle"
+length = 0.5333367
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.13467589, 0.26935178, 0.4001798),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_3v2ag"]
+resource_name = "run"
+length = 0.5333367
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.13467589, 0.26838982, 0.4030657),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [4, 5, 6, 7]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3v2ag"]
@@ -261,7 +262,7 @@ blend_mode = 1
 light_mode = 1
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d2wvv"]
-size = Vector2(56, 54)
+size = Vector2(62, 56)
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_g2els")
@@ -345,8 +346,10 @@ collision_layer = 0
 collision_mask = 64
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
-position = Vector2(0, 8)
+position = Vector2(0, 9)
 shape = SubResource("RectangleShape2D_d2wvv")
+
+[node name="goalbox" parent="." instance=ExtResource("11_3v2ag")]
 
 [node name="TimerGroup" type="Node2D" parent="."]
 
@@ -362,8 +365,10 @@ one_shot = true
 wait_time = 0.3
 one_shot = true
 
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="area_entered" from="RoomDetector" to="." method="_on_room_detector_area_entered"]
 [connection signal="received_damage" from="HurtBox" to="." method="_on_hurt_box_received_damage"]
+[connection signal="enter_goal" from="goalbox" to="." method="_on_goalbox_enter_goal"]
 [connection signal="timeout" from="TimerGroup/Invul" to="." method="_on_invul_timeout"]
 [connection signal="timeout" from="TimerGroup/CooldownTimer" to="." method="_on_cooldown_timer_timeout"]
 [connection signal="timeout" from="TimerGroup/HurtTimer" to="." method="_on_hurt_timer_timeout"]

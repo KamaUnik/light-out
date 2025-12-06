@@ -7,7 +7,6 @@ extends CharacterBody2D
 @onready var cooldownTimer: Timer = $TimerGroup/CooldownTimer
 @onready var fuelBar: TextureProgressBar = $FuelBar
 @onready var camera: Camera2D = $Camera2D
-@onready var Animsprite: AnimatedSprite2D = $AnimatedSprite2D
 var hp =3
 @onready var healthBar: HBoxContainer = $UI/HeartContainer
 #var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -17,13 +16,15 @@ var fuel = 3.0
 var invul = false
 var is_hurt = false
 var is_death=false
+var at_goal = false
 @onready var invultimer:Timer = $TimerGroup/Invul
 @onready var hurttimer:Timer = $TimerGroup/HurtTimer
 @onready var animplay: AnimationPlayer = $AnimationPlayer
 @onready var sprite: Sprite2D = $Sprite2D
+@onready var rotf: Node2D = $RotF
 
-
-
+signal player_died
+signal player_goal
 func _ready() -> void:
 	fuelBar.max_value = maxfuel
 
@@ -63,7 +64,7 @@ func push_player():
 
 
 func _physics_process(delta: float):
-	if is_death:
+	if is_death or at_goal:
 		return
 	if not is_on_floor():
 		velocity.y += gravity*delta
@@ -76,28 +77,19 @@ func _physics_process(delta: float):
 	if direction:
 		velocity.x = direction* SPEED
 		animplay.play("run")
-		#Animsprite.play("run")
 	else:
 		velocity.x=move_toward(velocity.x,0,SPEED)
 		animplay.play("idle")
-		#Animsprite.play("idle")	
 	
 	if not is_on_floor():
 		animplay.play("air")
-		#Animsprite.play("air")
 	
 	if is_hurt:
 		animplay.play("hurt")
-		#Animsprite.play("hurt")
-	#Animsprite.flip_h = ((get_global_mouse_position().x - global_position.x))<0
 	sprite.flip_h = ((get_global_mouse_position().x - global_position.x))<0
 	
 	firing_laser(delta)
 	move_and_slide()
-	#for i in get_slide_collision_count():
-		#var collision = get_slide_collision(i)
-		#print("Collided with: ", collision.get_collider().name)
-	
 
 func _on_room_detector_area_entered(area: Area2D):
 	var collision_shape = area.get_node("CollisionShape2D")
@@ -114,8 +106,6 @@ func _on_room_detector_area_entered(area: Area2D):
 	cam.limit_top = collision_shape.global_position.y - size.y/2
 	cam.limit_left = collision_shape.global_position.x - size.x/2
 	
-	#healthBar.position.y = cam.limit_top+10
-	#healthBar.position.x = cam.limit_left+10
 	
 	cam.limit_bottom = cam.limit_top + size.y
 	cam.limit_right = cam.limit_left + size.x
@@ -135,14 +125,13 @@ func hurt():
 		return
 	if invul:
 		return
-	print("Player is hurt")
 	hp-=1
-	sprite.modulate = Color("red")
-	#Animsprite.modulate = Color("red")
+	sprite.modulate = Color("ff4636ff")
 	if hp ==0:
 		animplay.play("death")
 		is_death=true
-		print("Player should be dead")
+		rotf.player_is_dead()
+		#player_died.emit()
 	invul = true
 	is_hurt=true
 	healthBar.update_value(hp)
@@ -155,7 +144,6 @@ func _on_invul_timeout() -> void:
 	invul=false
 	#Animsprite.modulate = Color("White")
 	sprite.modulate = Color("White")
-	print("No longer invul")
 
 
 func _on_hurt_box_received_damage() -> void:
@@ -164,3 +152,14 @@ func _on_hurt_box_received_damage() -> void:
 
 func _on_hurt_timer_timeout() -> void:
 	is_hurt = false
+
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	if anim_name =="death":
+		player_died.emit()
+
+
+func _on_goalbox_enter_goal() -> void:
+	at_goal=true
+	rotf.player_is_dead()
+	player_goal.emit()

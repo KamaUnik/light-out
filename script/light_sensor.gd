@@ -18,7 +18,7 @@ func _ready() -> void:
 	var ray = $RayCast2D
 	original_pos = ray.get_target_position()
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	update_target_pos()
 	check_light()
 	light_debug()

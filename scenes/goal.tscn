@@ -1,0 +1,145 @@
+[gd_scene load_steps=12 format=3 uid="uid://7r8s2sm221te"]
+
+[ext_resource type="Script" uid="uid://b7fy7cx7g6egn" path="res://script/goal.gd" id="1_jbojv"]
+[ext_resource type="Texture2D" uid="uid://4dgm0oxt1nbm" path="res://asset/sprites/GoalDoorsheet.png" id="2_sx1j4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xl315"]
+size = Vector2(60, 100)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_sx1j4"]
+blend_mode = 1
+light_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_xl315"]
+offsets = PackedFloat32Array(0.6261398)
+colors = PackedColorArray(0, 1, 0.33333334, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_jbojv"]
+gradient = SubResource("Gradient_xl315")
+
+[sub_resource type="Gradient" id="Gradient_sx1j4"]
+offsets = PackedFloat32Array(0.2857143, 0.65653497)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_w3gav"]
+gradient = SubResource("Gradient_sx1j4")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+metadata/_snap_enabled = true
+
+[sub_resource type="Animation" id="Animation_sx1j4"]
+resource_name = "activate"
+length = 0.33333668
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PointLight2D:enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.033333335),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("doorsprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.07216451, 0.13739012, 0.2053913, 0.2720047),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:monitorable")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.033333335),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_w3gav"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PointLight2D:enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("doorsprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:monitorable")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w3gav"]
+_data = {
+&"RESET": SubResource("Animation_w3gav"),
+&"activate": SubResource("Animation_sx1j4")
+}
+
+[node name="Goal" type="Area2D"]
+collision_layer = 128
+collision_mask = 128
+monitorable = false
+script = ExtResource("1_jbojv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_xl315")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("CanvasItemMaterial_sx1j4")
+scale = Vector2(0.9375, 1.5625)
+texture = SubResource("GradientTexture2D_jbojv")
+
+[node name="doorsprite" type="Sprite2D" parent="."]
+position = Vector2(-1.1920929e-07, -18)
+scale = Vector2(1.057692, 1.0576924)
+texture = ExtResource("2_sx1j4")
+hframes = 5
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, -70)
+enabled = false
+color = Color(0, 1, 0.06666667, 1)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_w3gav")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_w3gav")
+}

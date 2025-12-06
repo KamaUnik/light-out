@@ -1,0 +1,187 @@
+[gd_scene load_steps=7 format=3 uid="uid://df6j4wvrlwk3k"]
+
+[ext_resource type="Script" uid="uid://bxqlcjxmwqrqf" path="res://script/game_over.gd" id="1_xeevv"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_xeevv"]
+font_size = 96
+
+[sub_resource type="LabelSettings" id="LabelSettings_wqhvx"]
+font_size = 36
+
+[sub_resource type="Animation" id="Animation_wqhvx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Screen:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("rect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("rect/Label:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("rect/Retry:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("rect/Retry:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_xeevv"]
+resource_name = "activate"
+length = 1.2000034
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Screen:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4019612),
+"transitions": PackedFloat32Array(1, 2.1435473),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("rect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.40140936, 0.6683364),
+"transitions": PackedFloat32Array(1, 1.8660661),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("rect/Label:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.8333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("rect/Retry:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.1940401),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("rect/Retry:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wqhvx"]
+_data = {
+&"RESET": SubResource("Animation_wqhvx"),
+&"activate": SubResource("Animation_xeevv")
+}
+
+[node name="GameOver" type="CanvasLayer"]
+script = ExtResource("1_xeevv")
+
+[node name="Screen" type="Panel" parent="."]
+offset_right = 1600.0
+offset_bottom = 900.0
+
+[node name="rect" type="Panel" parent="."]
+offset_left = 100.0
+offset_top = 50.0
+offset_right = 1500.0
+offset_bottom = 850.0
+
+[node name="Label" type="Label" parent="rect"]
+layout_mode = 0
+offset_left = 470.0
+offset_top = 208.0
+offset_right = 910.0
+offset_bottom = 340.0
+text = "You Died!"
+label_settings = SubResource("LabelSettings_xeevv")
+
+[node name="Retry" type="Button" parent="rect"]
+layout_mode = 0
+offset_left = 606.0
+offset_top = 409.0
+offset_right = 766.0
+offset_bottom = 499.0
+
+[node name="Label" type="Label" parent="rect/Retry"]
+layout_mode = 0
+offset_left = 33.0
+offset_top = 20.0
+offset_right = 126.0
+offset_bottom = 70.0
+text = "Retry"
+label_settings = SubResource("LabelSettings_wqhvx")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_wqhvx")
+}
+
+[connection signal="pressed" from="rect/Retry" to="." method="_on_retry_pressed"]
