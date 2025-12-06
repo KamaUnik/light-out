@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://4thp4b884kfi"]
+
+[ext_resource type="PackedScene" uid="uid://dh2amub4mjmyf" path="res://scenes/spider.tscn" id="1_l5ht2"]
+
+[node name="SpiderNodes" type="Node2D"]
+
+[node name="Spider" parent="." instance=ExtResource("1_l5ht2")]

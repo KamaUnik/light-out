@@ -1,0 +1,84 @@
+[gd_scene load_steps=13 format=3 uid="uid://dh2amub4mjmyf"]
+
+[ext_resource type="Texture2D" uid="uid://bgmke36fvs46q" path="res://asset/sprites/Spidersheet.png" id="1_c7em6"]
+[ext_resource type="Script" uid="uid://by8i2teic825a" path="res://script/spider.gd" id="1_d613k"]
+[ext_resource type="PackedScene" uid="uid://b7dxhu18jxv1p" path="res://scenes/hitbox.tscn" id="2_algeo"]
+[ext_resource type="PackedScene" uid="uid://bkurry01veixc" path="res://scenes/light_sensor.tscn" id="3_k5hg5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_algeo"]
+atlas = ExtResource("1_c7em6")
+region = Rect2(0, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k5hg5"]
+atlas = ExtResource("1_c7em6")
+region = Rect2(60, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c7em6"]
+atlas = ExtResource("1_c7em6")
+region = Rect2(120, 0, 60, 60)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d613k"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_algeo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k5hg5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c7em6")
+}],
+"loop": true,
+"name": &"stop",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k5hg5"]
+radius = 34.36568
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d613k"]
+radius = 41.0
+
+[sub_resource type="Gradient" id="Gradient_k5hg5"]
+offsets = PackedFloat32Array(0.50759876, 0.66565347)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_d613k"]
+gradient = SubResource("Gradient_k5hg5")
+width = 40
+height = 40
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+metadata/_snap_enabled = true
+
+[node name="Spider" type="CharacterBody2D"]
+script = ExtResource("1_d613k")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2.2, 2.2)
+sprite_frames = SubResource("SpriteFrames_d613k")
+animation = &"stop"
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_k5hg5")
+
+[node name="Hitbox" parent="." instance=ExtResource("2_algeo")]
+collision_layer = 64
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_d613k")
+
+[node name="LightSensor" parent="." instance=ExtResource("3_k5hg5")]
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, 21)
+color = Color(1, 0.043137256, 0.09411765, 1)
+texture = SubResource("GradientTexture2D_d613k")

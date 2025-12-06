@@ -3,6 +3,7 @@ extends CharacterBody2D
 @onready var bar:TextureProgressBar = $Bar
 @onready var light:PointLight2D = $PointLight2D
 @onready var sprite:Sprite2D =  $Sprite2D
+@onready var audio:AudioStreamPlayer = $AudioStreamPlayer
 var cap = 5.0
 var fill = 0.0
 var state = false
@@ -15,7 +16,7 @@ func filling(delta):
 		bar.visible = true
 	if fill==cap:
 		return
-	fill+=delta
+	fill+=delta*2
 	if fill > cap:
 		fill = cap
 		bar.visible = false
@@ -23,6 +24,7 @@ func filling(delta):
 	bar.value = fill
 
 func activate():
+	audio.play()
 	sprite.frame=1
 	light.enabled=true
 	state = true

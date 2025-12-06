@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=4 uid="uid://bs7x4pygni6fn"]
+[gd_scene load_steps=34 format=4 uid="uid://bs7x4pygni6fn"]
 
 [ext_resource type="Script" uid="uid://cwe2pnvhoogy1" path="res://script/prototypelevel.gd" id="1_4tbec"]
 [ext_resource type="PackedScene" uid="uid://bvpthgtsv2mvk" path="res://scenes/player.tscn" id="1_jxkde"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://7r8s2sm221te" path="res://scenes/goal.tscn" id="11_1mj8h"]
 [ext_resource type="PackedScene" uid="uid://datywr7hrxp4e" path="res://scenes/light.tscn" id="11_nsctq"]
 [ext_resource type="PackedScene" uid="uid://dqh1mlqu0822r" path="res://scenes/generator.tscn" id="12_hhoqa"]
+[ext_resource type="PackedScene" uid="uid://4thp4b884kfi" path="res://scenes/spider_nodes.tscn" id="17_4lhd4"]
 
 [sub_resource type="Gradient" id="Gradient_w7c3h"]
 offsets = PackedFloat32Array(0)
@@ -320,6 +321,21 @@ position = Vector2(2789, 238)
 
 [node name="enemy2" parent="." instance=ExtResource("7_jhehc")]
 position = Vector2(3218, 174)
+
+[node name="SpiderNodes" parent="." instance=ExtResource("17_4lhd4")]
+position = Vector2(4019, -177)
+
+[node name="Pos" type="Node2D" parent="SpiderNodes"]
+position = Vector2(-86, 21)
+
+[node name="Node1" type="Node2D" parent="SpiderNodes/Pos"]
+position = Vector2(-262, 37)
+
+[node name="Node2" type="Node2D" parent="SpiderNodes/Pos"]
+position = Vector2(165, 143)
+
+[node name="Node3" type="Node2D" parent="SpiderNodes/Pos"]
+position = Vector2(229, -122)
 
 [connection signal="retry_pressed" from="GoalScreen" to="." method="_on_goal_screen_retry_pressed"]
 [connection signal="retry_pressed" from="GameOver" to="." method="_on_game_over_retry_pressed"]
