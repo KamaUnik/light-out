@@ -23,6 +23,6 @@ func _physics_process(delta: float) -> void:
 	position.x += direction*SPEED*delta
 
 func hurt(delta:float):
-	hp-=delta*70
+	hp-=delta*150
 	if hp<0.0:
 		queue_free()

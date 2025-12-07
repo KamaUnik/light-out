@@ -43,11 +43,11 @@ func firing_laser(delta:float):
 			is_firing_laser=true
 			if not leftclickhold:
 				push_player()
-				fuel-= 0.8
+				fuel-= 1.0
 			leftclickhold = true
 		else:
 			leftclickhold = false
-			fuel+=0.3*delta
+			fuel+=1*delta
 			if fuel>maxfuel:
 				fuel = maxfuel
 	else:

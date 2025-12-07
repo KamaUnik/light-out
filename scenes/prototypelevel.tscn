@@ -183,15 +183,18 @@ size = Vector2(6409, 1699)
 script = ExtResource("1_4tbec")
 
 [node name="GoalScreen" parent="." instance=ExtResource("2_l5kn2")]
+visible = false
 
 [node name="GameOver" parent="." instance=ExtResource("9_pgdrx")]
 layer = 2
+visible = false
 
 [node name="pausemenu" parent="." instance=ExtResource("4_khjps")]
 
 [node name="Transition" type="CanvasLayer" parent="."]
 
 [node name="TextureRect" type="TextureRect" parent="Transition"]
+visible = false
 offset_right = 1600.0
 offset_bottom = 900.0
 texture = SubResource("GradientTexture2D_4tbec")

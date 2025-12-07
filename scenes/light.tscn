@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://4bniece3cgx1" path="res://asset/sprites/Lightsheet.png" id="1_24oxn"]
 
 [sub_resource type="Gradient" id="Gradient_ky1i4"]
-offsets = PackedFloat32Array(0.51367784, 0.5987842, 0.7537994)
+offsets = PackedFloat32Array(0.17333333, 0.5987842, 0.7537994)
 colors = PackedColorArray(1, 1, 1, 1, 0.04494387, 0.04494387, 0.04494387, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_gr6e6"]
@@ -15,34 +15,6 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0, 1)
 metadata/_snap_enabled = true
-
-[sub_resource type="Animation" id="Animation_24oxn"]
-resource_name = "on"
-length = 0.03333667
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PointLight2D:enabled")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1]
-}
 
 [sub_resource type="Animation" id="Animation_2e2gu"]
 length = 0.001
@@ -70,6 +42,59 @@ tracks/1/keys = {
 "update": 1,
 "values": [0]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PointLight2D2:enabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_24oxn"]
+resource_name = "on"
+length = 0.03333667
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PointLight2D:enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PointLight2D2:enabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.0049087275),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ky1i4"]
 _data = {
@@ -87,7 +112,16 @@ hframes = 2
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 enabled = false
+color = Color(0.62352943, 0, 0.0627451, 1)
+energy = 0.5
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_gr6e6")
+
+[node name="PointLight2D2" type="PointLight2D" parent="."]
+scale = Vector2(2, 2)
+enabled = false
 color = Color(1, 0.24070099, 0.22565526, 1)
+energy = 0.1
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_gr6e6")
 
