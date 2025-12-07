@@ -7,6 +7,7 @@ extends CanvasLayer
 @onready var retry : Button = $rect/Retry
 @onready var animplay: AnimationPlayer = $AnimationPlayer
 signal retry_pressed
+signal level_select_pressed
 
 func _ready() -> void:
 	visible=false
@@ -23,5 +24,8 @@ func activate():
 func _on_retry_pressed() -> void:
 	retry_pressed.emit()
 
-func transition_complete():
-	get_tree().reload_current_scene()
+func _on_levelselect_pressed() -> void:
+	level_select_pressed.emit()
+
+func _on_quit_pressed() -> void:
+	get_tree().quit()

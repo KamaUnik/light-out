@@ -11,9 +11,9 @@ config_version=5
 [application]
 
 config/name="LightOut"
-run/main_scene="uid://bs7x4pygni6fn"
+run/main_scene="uid://pydeikqlvh8e"
 config/features=PackedStringArray("4.5", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="uid://c58tlileu880i"
 
 [display]
 

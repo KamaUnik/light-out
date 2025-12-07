@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://2mt4dx3hdcj"]
+
+[ext_resource type="Texture2D" uid="uid://v0v6ebvlkla6" path="res://asset/sprites/playbutton/nothingbutton1.png" id="1_hrusj"]
+[ext_resource type="Texture2D" uid="uid://cypienobe8c4f" path="res://asset/sprites/playbutton/Playbutton3.png" id="2_6g3el"]
+[ext_resource type="Texture2D" uid="uid://b4yctl2tcgmvm" path="res://asset/sprites/playbutton/nothingbutton2.png" id="3_ium1h"]
+[ext_resource type="Script" uid="uid://b31uq30ajvxyi" path="res://script/level_button.gd" id="4_6g3el"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_hrusj"]
+font_size = 35
+font_color = Color(0, 0, 0, 1)
+outline_size = 6
+
+[node name="levelButton" type="TextureButton"]
+offset_left = 1.0
+offset_right = 201.0
+offset_bottom = 80.0
+texture_normal = ExtResource("1_hrusj")
+texture_pressed = ExtResource("2_6g3el")
+texture_hover = ExtResource("3_ium1h")
+script = ExtResource("4_6g3el")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 11.0
+offset_right = 105.0
+offset_bottom = 68.0
+text = "Test"
+label_settings = SubResource("LabelSettings_hrusj")

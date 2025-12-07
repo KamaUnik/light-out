@@ -292,10 +292,10 @@ script = ExtResource("9_r7a6t")
 position = Vector2(4488, 204)
 
 [node name="GenDoor" parent="TestLight2/Machines" instance=ExtResource("12_yfhuw")]
-position = Vector2(4265, 194)
+position = Vector2(4256, -102)
 
 [node name="Light" parent="TestLight2/Machines" instance=ExtResource("11_nsctq")]
-position = Vector2(4371, -78)
+position = Vector2(4373, -78)
 
 [node name="Generator" parent="TestLight2" instance=ExtResource("12_hhoqa")]
 position = Vector2(3981, 198)
@@ -344,7 +344,9 @@ position = Vector2(165, 143)
 [node name="Node3" type="Node2D" parent="SpiderNodes/Pos"]
 position = Vector2(229, -122)
 
+[connection signal="level_select_pressed" from="GoalScreen" to="." method="_on_goal_screen_level_select_pressed"]
 [connection signal="retry_pressed" from="GoalScreen" to="." method="_on_goal_screen_retry_pressed"]
+[connection signal="level_select_pressed" from="GameOver" to="." method="_on_game_over_level_select_pressed"]
 [connection signal="retry_pressed" from="GameOver" to="." method="_on_game_over_retry_pressed"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="player_died" from="Player" to="." method="_on_player_player_died"]

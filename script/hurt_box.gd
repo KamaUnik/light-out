@@ -10,5 +10,6 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 
-func _on_area_enterd(_hitbox: Hitbox):
+func _on_area_enterd(_body):
+	print("got hit")
 	received_damage.emit()

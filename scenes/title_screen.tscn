@@ -1,0 +1,222 @@
+[gd_scene load_steps=15 format=3 uid="uid://ecwwpu3ei8tn"]
+
+[ext_resource type="Script" uid="uid://dfrohpe4v6bo" path="res://script/title_screen.gd" id="1_cs5ya"]
+[ext_resource type="Texture2D" uid="uid://de2tbo78b5hhk" path="res://asset/sprites/TitleScreen.png" id="1_fgkus"]
+[ext_resource type="Texture2D" uid="uid://dvhd2u0provw1" path="res://asset/sprites/Title.png" id="2_sa3yf"]
+[ext_resource type="Texture2D" uid="uid://b3dyjper332dx" path="res://asset/sprites/playbutton/Playbutton1.png" id="3_dc4i4"]
+[ext_resource type="Texture2D" uid="uid://cypienobe8c4f" path="res://asset/sprites/playbutton/Playbutton3.png" id="4_e54dn"]
+[ext_resource type="Texture2D" uid="uid://bi6plko7mgj1j" path="res://asset/sprites/playbutton/Playbutton2.png" id="5_3yumr"]
+[ext_resource type="Texture2D" uid="uid://didp3x3ruwf5r" path="res://asset/sprites/playbutton/Exitbutton1.png" id="6_3yumr"]
+[ext_resource type="Texture2D" uid="uid://b1d2yk4gx5hws" path="res://asset/sprites/playbutton/Exitbutton2.png" id="7_cs5ya"]
+
+[sub_resource type="Gradient" id="Gradient_cs5ya"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_e54dn"]
+gradient = SubResource("Gradient_cs5ya")
+
+[sub_resource type="Animation" id="Animation_cs5ya"]
+resource_name = "start"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transition:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.26666668),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Transition:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.26666668),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Logo:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.25892004, 0.46666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(295, -277), Vector2(295, 188.99997)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("playbutton:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.33566746, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-336, 536), Vector2(85, 536)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Exit:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.42404327, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-205, 643), Vector2(92, 643)]
+}
+
+[sub_resource type="Animation" id="Animation_mykxm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transition:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Transition:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Logo:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(295, -277)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("playbutton:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-336, 536)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Exit:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-205, 643)]
+}
+
+[sub_resource type="Animation" id="Animation_tklts"]
+resource_name = "Hide"
+length = 0.33333668
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transition:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Transition:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2771151),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u26n3"]
+_data = {
+&"Hide": SubResource("Animation_tklts"),
+&"RESET": SubResource("Animation_mykxm"),
+&"start": SubResource("Animation_cs5ya")
+}
+
+[node name="TitleScreen" type="CanvasLayer"]
+layer = 2
+script = ExtResource("1_cs5ya")
+
+[node name="Screen" type="Sprite2D" parent="."]
+position = Vector2(800, 450)
+texture = ExtResource("1_fgkus")
+
+[node name="Logo" type="Sprite2D" parent="."]
+position = Vector2(295, -277)
+scale = Vector2(3.875001, 3.8750002)
+texture = ExtResource("2_sa3yf")
+
+[node name="playbutton" type="TextureButton" parent="."]
+offset_left = -336.0
+offset_top = 536.0
+offset_right = -136.0
+offset_bottom = 616.0
+texture_normal = ExtResource("3_dc4i4")
+texture_pressed = ExtResource("4_e54dn")
+texture_hover = ExtResource("5_3yumr")
+
+[node name="Exit" type="TextureButton" parent="."]
+offset_left = -205.0
+offset_top = 643.0
+offset_right = -5.0
+offset_bottom = 723.0
+texture_normal = ExtResource("6_3yumr")
+texture_pressed = ExtResource("4_e54dn")
+texture_hover = ExtResource("7_cs5ya")
+
+[node name="Transition" type="TextureRect" parent="."]
+offset_right = 1600.0
+offset_bottom = 900.0
+texture = SubResource("GradientTexture2D_e54dn")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_u26n3")
+}
+
+[connection signal="pressed" from="playbutton" to="." method="_on_playbutton_pressed"]
+[connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
