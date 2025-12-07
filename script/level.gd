@@ -22,6 +22,13 @@ func _on_game_over_retry_pressed() -> void:
 	resetting = true
 	animplayer.play("hide")
 
+func _on_pausemenu_retry_pressed() -> void:
+	resetting=true
+	animplayer.play("hide")
+	
+func _on_pausemenu_level_select_pressed() -> void:
+	animplayer.play("hide")
+
 func _on_goal_screen_retry_pressed() -> void:
 	resetting=true
 	animplayer.play("hide")
@@ -38,3 +45,8 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 			get_parent().load_level(this_scene_path)
 		else:
 			get_parent().load_level(level_select_scene_path)
+
+
+func _on_generator_groups_objective_completed() -> void:
+	$Goal.activate()
+	

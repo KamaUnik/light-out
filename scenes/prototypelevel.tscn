@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=4 uid="uid://bs7x4pygni6fn"]
+[gd_scene load_steps=36 format=4 uid="uid://bs7x4pygni6fn"]
 
 [ext_resource type="Script" uid="uid://cwe2pnvhoogy1" path="res://script/prototypelevel.gd" id="1_4tbec"]
 [ext_resource type="PackedScene" uid="uid://bvpthgtsv2mvk" path="res://scenes/player.tscn" id="1_jxkde"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dglvl5xtyndmg" path="res://scenes/temp_platform.tscn" id="2_pbx1m"]
 [ext_resource type="PackedScene" uid="uid://bkurry01veixc" path="res://scenes/light_sensor.tscn" id="3_ckgwo"]
 [ext_resource type="PackedScene" uid="uid://c13lr7pma34nj" path="res://scenes/group_comp.tscn" id="4_hqs0r"]
+[ext_resource type="PackedScene" uid="uid://cxeudbiq18tvd" path="res://scenes/pausemenu.tscn" id="4_khjps"]
 [ext_resource type="PackedScene" uid="uid://bdme35xwqgng3" path="res://scenes/switch.tscn" id="5_jhehc"]
 [ext_resource type="PackedScene" uid="uid://d25ugf62o1fua" path="res://scenes/door.tscn" id="6_pbx1m"]
 [ext_resource type="PackedScene" uid="uid://d0rmipoeqxov3" path="res://scenes/enemy.tscn" id="7_jhehc"]
@@ -185,7 +186,8 @@ script = ExtResource("1_4tbec")
 
 [node name="GameOver" parent="." instance=ExtResource("9_pgdrx")]
 layer = 2
-visible = false
+
+[node name="pausemenu" parent="." instance=ExtResource("4_khjps")]
 
 [node name="Transition" type="CanvasLayer" parent="."]
 
@@ -210,6 +212,7 @@ shape = SubResource("WorldBoundaryShape2D_jxkde")
 [node name="TileMapSet" type="Node2D" parent="."]
 
 [node name="Darkness" type="CanvasModulate" parent="TileMapSet"]
+visible = false
 position = Vector2(0, 1)
 color = Color(0.043039218, 0.043039136, 0.04303915, 1)
 
@@ -348,6 +351,8 @@ position = Vector2(229, -122)
 [connection signal="retry_pressed" from="GoalScreen" to="." method="_on_goal_screen_retry_pressed"]
 [connection signal="level_select_pressed" from="GameOver" to="." method="_on_game_over_level_select_pressed"]
 [connection signal="retry_pressed" from="GameOver" to="." method="_on_game_over_retry_pressed"]
+[connection signal="level_select_pressed" from="pausemenu" to="." method="_on_pausemenu_level_select_pressed"]
+[connection signal="retry_pressed" from="pausemenu" to="." method="_on_pausemenu_retry_pressed"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="player_died" from="Player" to="." method="_on_player_player_died"]
 [connection signal="player_goal" from="Player" to="." method="_on_player_player_goal"]

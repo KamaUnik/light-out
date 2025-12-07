@@ -17,6 +17,7 @@ var invul = false
 var is_hurt = false
 var is_death=false
 var at_goal = false
+var paused = false
 @onready var invultimer:Timer = $TimerGroup/Invul
 @onready var hurttimer:Timer = $TimerGroup/HurtTimer
 @onready var animplay: AnimationPlayer = $AnimationPlayer
@@ -33,6 +34,8 @@ func refill_fuel():
 
 var leftclickhold = false
 func firing_laser(delta:float):
+	if paused:
+		return
 	var is_firing_laser=false
 	if fuel > 0.0:
 		if Input.is_action_pressed("leftclick"):
@@ -64,7 +67,10 @@ func push_player():
 
 
 func _physics_process(delta: float):
-	if is_death or at_goal:
+	if Input.is_action_just_pressed("pausemenu"):
+		paused = not paused
+		rotf.paused = paused
+	if is_death or at_goal or paused:
 		return
 	if not is_on_floor():
 		velocity.y += gravity*delta
@@ -106,19 +112,13 @@ func _on_room_detector_area_entered(area: Area2D):
 	cam.limit_top = collision_shape.global_position.y - size.y/2
 	cam.limit_left = collision_shape.global_position.x - size.x/2
 	
-	
 	cam.limit_bottom = cam.limit_top + size.y
 	cam.limit_right = cam.limit_left + size.x
 #
-
-
 func _on_cooldown_timer_timeout() -> void:
 	fuel+=0.01
 	flashlight.is_usable(true)
 	is_cooling = false
-
-
-
 
 func hurt():
 	if is_death:

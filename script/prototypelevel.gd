@@ -25,6 +25,13 @@ func _on_goal_screen_retry_pressed() -> void:
 	resetting=true
 	animplayer.play("hide")
 
+func _on_pausemenu_retry_pressed() -> void:
+	resetting=true
+	animplayer.play("hide")
+	
+func _on_pausemenu_level_select_pressed() -> void:
+	animplayer.play("hide")
+	
 func _on_game_over_level_select_pressed() -> void:
 	animplayer.play("hide")
 	

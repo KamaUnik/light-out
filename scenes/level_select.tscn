@@ -140,18 +140,18 @@ labelname = "Prototype"
 levelpath = "res://scenes/prototypelevel.tscn"
 
 [node name="level1" parent="." instance=ExtResource("3_2epne")]
-offset_left = 684.0
-offset_top = 430.0
-offset_right = 884.0
-offset_bottom = 510.0
+offset_left = 663.0
+offset_top = 420.0
+offset_right = 863.0
+offset_bottom = 500.0
 labelname = "Level 1"
 levelpath = "res://scenes/level_1.tscn"
 
 [node name="level2" parent="." instance=ExtResource("3_2epne")]
-offset_left = 902.0
-offset_top = 590.0
-offset_right = 1102.0
-offset_bottom = 670.0
+offset_left = 954.0
+offset_top = 598.0
+offset_right = 1154.0
+offset_bottom = 678.0
 labelname = "Level 2"
 levelpath = "res://scenes/level_2.tscn"
 
