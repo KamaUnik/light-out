@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=4 uid="uid://bs7x4pygni6fn"]
+[gd_scene load_steps=35 format=4 uid="uid://bs7x4pygni6fn"]
 
 [ext_resource type="Script" uid="uid://cwe2pnvhoogy1" path="res://script/prototypelevel.gd" id="1_4tbec"]
 [ext_resource type="PackedScene" uid="uid://bvpthgtsv2mvk" path="res://scenes/player.tscn" id="1_jxkde"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://7r8s2sm221te" path="res://scenes/goal.tscn" id="11_1mj8h"]
 [ext_resource type="PackedScene" uid="uid://datywr7hrxp4e" path="res://scenes/light.tscn" id="11_nsctq"]
 [ext_resource type="PackedScene" uid="uid://dqh1mlqu0822r" path="res://scenes/generator.tscn" id="12_hhoqa"]
+[ext_resource type="PackedScene" uid="uid://c8xvniieeokxr" path="res://scenes/gen_door.tscn" id="12_yfhuw"]
 [ext_resource type="PackedScene" uid="uid://4thp4b884kfi" path="res://scenes/spider_nodes.tscn" id="17_4lhd4"]
 
 [sub_resource type="Gradient" id="Gradient_w7c3h"]
@@ -274,21 +275,27 @@ script = ExtResource("9_r7a6t")
 [node name="switch_new" parent="TestLight" instance=ExtResource("10_nsctq")]
 position = Vector2(2652, 162)
 
-[node name="Lights" type="Node2D" parent="TestLight"]
+[node name="Machines" type="Node2D" parent="TestLight"]
 
-[node name="Light" parent="TestLight/Lights" instance=ExtResource("11_nsctq")]
+[node name="Light" parent="TestLight/Machines" instance=ExtResource("11_nsctq")]
 position = Vector2(2793, -13)
 
-[node name="Light2" parent="TestLight/Lights" instance=ExtResource("11_nsctq")]
+[node name="Light2" parent="TestLight/Machines" instance=ExtResource("11_nsctq")]
 position = Vector2(3116, -29)
 
 [node name="TestLight2" type="Node2D" parent="."]
 script = ExtResource("9_r7a6t")
 
-[node name="Lights" type="Node2D" parent="TestLight2"]
+[node name="Machines" type="Node2D" parent="TestLight2"]
 
-[node name="Goal" parent="TestLight2/Lights" instance=ExtResource("11_1mj8h")]
-position = Vector2(3726, 204)
+[node name="Goal" parent="TestLight2/Machines" instance=ExtResource("11_1mj8h")]
+position = Vector2(4488, 204)
+
+[node name="GenDoor" parent="TestLight2/Machines" instance=ExtResource("12_yfhuw")]
+position = Vector2(4265, 194)
+
+[node name="Light" parent="TestLight2/Machines" instance=ExtResource("11_nsctq")]
+position = Vector2(4371, -78)
 
 [node name="Generator" parent="TestLight2" instance=ExtResource("12_hhoqa")]
 position = Vector2(3981, 198)

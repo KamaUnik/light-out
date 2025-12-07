@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dqh1mlqu0822r"]
+[gd_scene load_steps=13 format=3 uid="uid://dqh1mlqu0822r"]
 
 [ext_resource type="Texture2D" uid="uid://ctac1agww0nlp" path="res://asset/sprites/Generatorsheet.png" id="1_5yxne"]
 [ext_resource type="Script" uid="uid://c5h6psf31w0qo" path="res://script/generator.gd" id="1_w5vnv"]
@@ -20,6 +20,10 @@ height = 120
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 metadata/_snap_enabled = true
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4pjfl"]
+blend_mode = 1
+light_mode = 1
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_rqoq6"]
 polygon = PackedVector2Array(-46, -36, -46, 52, 44, 52, 44, -36)
@@ -55,6 +59,7 @@ texture = SubResource("GradientTexture2D_ef8yp")
 
 [node name="Bar" type="TextureProgressBar" parent="."]
 visible = false
+material = SubResource("CanvasItemMaterial_4pjfl")
 offset_left = -41.0
 offset_top = -65.0
 offset_right = 39.0

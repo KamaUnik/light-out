@@ -1,5 +1,5 @@
 extends Node2D
-@onready var light_children = $Lights.get_children()
+@onready var light_children = $Machines.get_children()
 
 var is_activated = false
 

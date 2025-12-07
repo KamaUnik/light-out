@@ -1,0 +1,94 @@
+[gd_scene load_steps=8 format=3 uid="uid://c8xvniieeokxr"]
+
+[ext_resource type="Script" uid="uid://do0ppvdokqpn5" path="res://script/gen_door.gd" id="1_5rra3"]
+[ext_resource type="Texture2D" uid="uid://d0b8s8ky0f2xl" path="res://asset/sprites/GeneratorDoorsheet.png" id="1_xmq0n"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xmq0n"]
+size = Vector2(62.5, 63)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5rra3"]
+size = Vector2(62, 321)
+
+[sub_resource type="Animation" id="Animation_1yic8"]
+resource_name = "activate"
+length = 0.5333367
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.10188055, 0.20579872, 0.30156642, 0.40140936, 0.5175532),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColBottom:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.06927878),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_xmq0n"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColBottom:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ymerj"]
+_data = {
+&"RESET": SubResource("Animation_xmq0n"),
+&"activate": SubResource("Animation_1yic8")
+}
+
+[node name="GenDoor" type="StaticBody2D"]
+light_mask = 5
+script = ExtResource("1_5rra3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1, 0)
+scale = Vector2(2, 2)
+texture = ExtResource("1_xmq0n")
+hframes = 6
+
+[node name="ColTop" type="CollisionShape2D" parent="."]
+position = Vector2(-0.25, -160.5)
+shape = SubResource("RectangleShape2D_xmq0n")
+
+[node name="ColBottom" type="CollisionShape2D" parent="."]
+position = Vector2(0, 31.5)
+shape = SubResource("RectangleShape2D_5rra3")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ymerj")
+}
