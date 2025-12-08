@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=4 uid="uid://b0eww17vrp7xj"]
+[gd_scene load_steps=40 format=4 uid="uid://b0eww17vrp7xj"]
 
 [ext_resource type="Script" uid="uid://5ftw8isl68il" path="res://script/level.gd" id="1_2y5yt"]
 [ext_resource type="Texture2D" uid="uid://bs64j1upe18e1" path="res://asset/Tiles/GridPrototype.png" id="2_2os1m"]
@@ -562,6 +562,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TileMapSet/Exit:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_mx8sn"]
 resource_name = "hide"
@@ -590,9 +602,6 @@ tracks/1/keys = {
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_15mv3"]
-resource_name = "objective_complete"
-
 [sub_resource type="Animation" id="Animation_w7c3h"]
 resource_name = "show"
 tracks/0/type = "value"
@@ -619,17 +628,30 @@ tracks/1/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TileMapSet/Exit:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mx8sn"]
 _data = {
 &"RESET": SubResource("Animation_w8frs"),
 &"hide": SubResource("Animation_mx8sn"),
-&"objective_complete": SubResource("Animation_15mv3"),
 &"show": SubResource("Animation_w7c3h")
 }
 
 [node name="Level1" type="Node2D"]
 script = ExtResource("1_2y5yt")
+level_name = "Level 1"
+this_scene_path = "res://scenes/level_1.tscn"
 
 [node name="sketch" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.3137255)
@@ -674,9 +696,11 @@ tile_set = SubResource("TileSet_7nomh")
 
 [node name="Exit" type="TileMapLayer" parent="TileMapSet"]
 material = SubResource("CanvasItemMaterial_1s4pk")
+tile_map_data = PackedByteArray("AAAmAAkAAAACAAIAAAALAAIAAAACAAEAAAAnABAAAAAAAAEAAAA8AAwAAAACAAIAAAAeABoAAAACAAEAAAACABYAAAABAAIAAABHAB8AAAACAAIAAABDACgAAAAAAAIAAAA5ACcAAAAAAAEAAAA=")
 tile_set = SubResource("TileSet_2cbcq")
 
 [node name="Player" parent="." instance=ExtResource("5_2aecg")]
+position = Vector2(-1, -1)
 
 [node name="Objective" type="Node2D" parent="."]
 
@@ -693,7 +717,7 @@ position = Vector2(418, 182)
 scale = Vector2(1, 0.7)
 
 [node name="GenDoor2" parent="Objective/Generator_groups/Group1/Machines" instance=ExtResource("12_2aecg")]
-position = Vector2(1687, 203)
+position = Vector2(1692, 224)
 scale = Vector2(1, 0.5)
 
 [node name="Light" parent="Objective/Generator_groups/Group1/Machines" instance=ExtResource("13_7nomh")]
@@ -745,7 +769,7 @@ position = Vector2(1919, 244)
 position = Vector2(2797, 2594)
 
 [node name="Generator" parent="Objective/Generator_groups/Group1" instance=ExtResource("12_6dial")]
-position = Vector2(3677, 2707)
+position = Vector2(3677, 2697)
 
 [node name="Goal" parent="." instance=ExtResource("4_7gny6")]
 position = Vector2(79, 269)
@@ -816,3 +840,5 @@ position = Vector2(2867, 804)
 [connection signal="retry_pressed" from="pausemenu" to="." method="_on_pausemenu_retry_pressed"]
 [connection signal="player_died" from="Player" to="." method="_on_player_player_died"]
 [connection signal="player_goal" from="Player" to="." method="_on_player_player_goal"]
+[connection signal="objective_completed" from="Objective/Generator_groups" to="." method="_on_generator_groups_objective_completed"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

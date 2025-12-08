@@ -76,6 +76,7 @@ scale_curve = SubResource("CurveTexture_jjj73")
 [node name="laser" type="RayCast2D"]
 material = SubResource("CanvasItemMaterial_a7dhc")
 target_position = Vector2(1400, 0)
+collision_mask = 32
 script = ExtResource("1_xmihv")
 start_distance = 0.0
 color = Color(0.5598139, 1.9614621, 1.9614621, 1)

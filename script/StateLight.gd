@@ -4,8 +4,7 @@ extends Node2D
 var is_activated = false
 #Insert light.tscn and gen_door.tscn here
 func activate() -> void:
-	if get_parent().name == "Objective":
-		get_parent().activate()
+	get_parent().activate()
 	if is_activated:
 		return
 	is_activated = true

@@ -1,8 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://d0rmipoeqxov3"]
+[gd_scene load_steps=13 format=3 uid="uid://d0rmipoeqxov3"]
 
 [ext_resource type="Script" uid="uid://cj2nya5nchvpt" path="res://script/enemy.gd" id="1_md0e3"]
 [ext_resource type="Texture2D" uid="uid://crv4achos7h6k" path="res://asset/sprites/nhornmha.png" id="2_4ra3w"]
 [ext_resource type="PackedScene" uid="uid://b7dxhu18jxv1p" path="res://scenes/hitbox.tscn" id="3_4ra3w"]
+[ext_resource type="AudioStream" uid="uid://bus63w4o128j6" path="res://asset/Sound/8-bit-explosion-10-340462.mp3" id="4_5uy6h"]
+[ext_resource type="AudioStream" uid="uid://e8b1d6ty7n5o" path="res://asset/Sound/wormdog.wav" id="5_c4w8v"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5uy6h"]
 atlas = ExtResource("2_4ra3w")
@@ -43,6 +45,8 @@ size = Vector2(94, 19)
 polygon = PackedVector2Array(-42, 5, -42, -5, 42, -5, 42, 5)
 
 [node name="enemy" type="CharacterBody2D"]
+collision_layer = 33
+collision_mask = 33
 script = ExtResource("1_md0e3")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -72,7 +76,6 @@ position = Vector2(-31, 1)
 target_position = Vector2(-22, 0)
 
 [node name="Hitbox" parent="." instance=ExtResource("3_4ra3w")]
-collision_layer = 64
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
@@ -82,3 +85,18 @@ shape = SubResource("RectangleShape2D_4ra3w")
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 occluder = SubResource("OccluderPolygon2D_4ra3w")
 occluder_light_mask = 4
+
+[node name="Deathtimer" type="Timer" parent="."]
+wait_time = 0.8
+one_shot = true
+
+[node name="Death" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_5uy6h")
+
+[node name="walk" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_c4w8v")
+volume_db = 3.1
+max_distance = 450.0
+attenuation = 0.4204482
+
+[connection signal="timeout" from="Deathtimer" to="." method="_on_deathtimer_timeout"]

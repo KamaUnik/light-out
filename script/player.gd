@@ -23,7 +23,8 @@ var paused = false
 @onready var animplay: AnimationPlayer = $AnimationPlayer
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var rotf: Node2D = $RotF
-
+@onready var hurt_audio = $AudioGroup/Hurt
+@onready var step_audio =$AudioGroup/FootStep
 signal player_died
 signal player_goal
 func _ready() -> void:
@@ -81,9 +82,14 @@ func _physics_process(delta: float):
 	
 	var direction =Input.get_axis("a","d")
 	if direction:
+		if !step_audio.playing:
+			step_audio.play()
+		if not is_on_floor():
+			step_audio.stop()
 		velocity.x = direction* SPEED
 		animplay.play("run")
 	else:
+		step_audio.stop()
 		velocity.x=move_toward(velocity.x,0,SPEED)
 		animplay.play("idle")
 	
@@ -126,6 +132,7 @@ func hurt():
 	if invul:
 		return
 	hp-=1
+	hurt_audio .play()
 	sprite.modulate = Color("ff4636ff")
 	if hp ==0:
 		animplay.play("death")

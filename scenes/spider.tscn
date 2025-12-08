@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://dh2amub4mjmyf"]
+[gd_scene load_steps=14 format=3 uid="uid://dh2amub4mjmyf"]
 
 [ext_resource type="Texture2D" uid="uid://bgmke36fvs46q" path="res://asset/sprites/Spidersheet.png" id="1_c7em6"]
 [ext_resource type="Script" uid="uid://by8i2teic825a" path="res://script/spider.gd" id="1_d613k"]
 [ext_resource type="PackedScene" uid="uid://b7dxhu18jxv1p" path="res://scenes/hitbox.tscn" id="2_algeo"]
 [ext_resource type="PackedScene" uid="uid://bkurry01veixc" path="res://scenes/light_sensor.tscn" id="3_k5hg5"]
+[ext_resource type="AudioStream" uid="uid://ta0w5woq57kd" path="res://asset/Sound/spider.wav" id="5_evcmw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_algeo"]
 atlas = ExtResource("1_c7em6")
@@ -58,6 +59,8 @@ fill_from = Vector2(0.5, 0.5)
 metadata/_snap_enabled = true
 
 [node name="Spider" type="CharacterBody2D"]
+collision_layer = 33
+collision_mask = 33
 script = ExtResource("1_d613k")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -70,8 +73,6 @@ autoplay = "default"
 shape = SubResource("CircleShape2D_k5hg5")
 
 [node name="Hitbox" parent="." instance=ExtResource("2_algeo")]
-collision_layer = 64
-collision_mask = 64
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("CircleShape2D_d613k")
@@ -82,3 +83,9 @@ shape = SubResource("CircleShape2D_d613k")
 position = Vector2(0, 21)
 color = Color(1, 0.043137256, 0.09411765, 1)
 texture = SubResource("GradientTexture2D_d613k")
+
+[node name="walk" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_evcmw")
+volume_db = 2.708
+max_distance = 450.0
+attenuation = 0.32987702

@@ -3,14 +3,22 @@ extends CharacterBody2D
 @onready var sensor :lightsensor = $LightSensor
 @onready var AnimSprites:AnimatedSprite2D = $AnimatedSprite2D
 @onready var poschildren:Array[Node] = $"../Pos".get_children()
+@onready var walkaudio = $walk
 const SPEED = 300.0
 var is_shined = false
 var current_pos = 0
 
 func _physics_process(delta: float) -> void:
+	
 	if sensor.get_State():
 		AnimSprites.play("stop")
+		walkaudio.stop()
 		return
+	if !walkaudio.playing:
+		if is_shined:
+			walkaudio.stop()
+		else:
+			walkaudio.play()
 	AnimSprites.play("default")
 	var next_pos = poschildren[current_pos].global_position
 	rotation = (next_pos- global_position).angle() -PI/2
