@@ -648,6 +648,7 @@ visible = false
 [node name="TileMapSet" type="Node2D" parent="."]
 
 [node name="Darkness" type="CanvasModulate" parent="TileMapSet"]
+visible = false
 position = Vector2(0, 1)
 color = Color(0.029506557, 0.029506557, 0.029506557, 1)
 

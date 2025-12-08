@@ -194,7 +194,6 @@ visible = false
 [node name="Transition" type="CanvasLayer" parent="."]
 
 [node name="TextureRect" type="TextureRect" parent="Transition"]
-visible = false
 offset_right = 1600.0
 offset_bottom = 900.0
 texture = SubResource("GradientTexture2D_4tbec")
