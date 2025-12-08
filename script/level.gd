@@ -10,6 +10,7 @@ var resetting = false
 const level_select_scene_path = "res://scenes/level_select.tscn"
 
 func _ready():
+	$TileMapSet/Exit.visible = false
 	animplayer.play("show")
 
 func _on_player_player_died() -> void:

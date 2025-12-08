@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=4 uid="uid://b0eww17vrp7xj"]
+[gd_scene load_steps=41 format=4 uid="uid://b0eww17vrp7xj"]
 
 [ext_resource type="Script" uid="uid://5ftw8isl68il" path="res://script/level.gd" id="1_2y5yt"]
 [ext_resource type="Texture2D" uid="uid://bs64j1upe18e1" path="res://asset/Tiles/GridPrototype.png" id="2_2os1m"]
@@ -500,6 +500,9 @@ texture_region_size = Vector2i(64, 64)
 tile_size = Vector2i(64, 64)
 sources/0 = SubResource("TileSetAtlasSource_x2xxo")
 
+[sub_resource type="LabelSettings" id="LabelSettings_7nomh"]
+font_size = 41
+
 [sub_resource type="Gradient" id="Gradient_4nkto"]
 offsets = PackedFloat32Array(0)
 colors = PackedColorArray(0, 0, 0, 1)
@@ -670,10 +673,18 @@ material = SubResource("CanvasItemMaterial_1s4pk")
 tile_map_data = PackedByteArray("AAAmAAkAAAACAAIAAAALAAIAAAACAAEAAAAnABAAAAAAAAEAAAA8AAwAAAACAAIAAAAeABoAAAACAAEAAAACABYAAAABAAIAAABHAB8AAAACAAIAAABDACgAAAAAAAIAAAA5ACcAAAAAAAEAAAA=")
 tile_set = SubResource("TileSet_2cbcq")
 
-[node name="Player" parent="." instance=ExtResource("5_2aecg")]
-position = Vector2(-1, -1)
-
 [node name="Objective" type="Node2D" parent="."]
+
+[node name="Objremaining" type="CanvasLayer" parent="Objective"]
+
+[node name="Label" type="Label" parent="Objective/Objremaining"]
+offset_left = 1289.0
+offset_top = 10.0
+offset_right = 1673.0
+offset_bottom = 207.0
+text = "Remaining:
+Nothing"
+label_settings = SubResource("LabelSettings_7nomh")
 
 [node name="Generator_groups" type="Node2D" parent="Objective"]
 script = ExtResource("10_7gny6")
@@ -742,6 +753,9 @@ position = Vector2(2797, 2594)
 [node name="Generator" parent="Objective/Generator_groups/Group1" instance=ExtResource("12_6dial")]
 position = Vector2(3677, 2697)
 
+[node name="Player" parent="." instance=ExtResource("5_2aecg")]
+position = Vector2(-1, -1)
+
 [node name="Goal" parent="." instance=ExtResource("4_7gny6")]
 position = Vector2(79, 269)
 
@@ -809,7 +823,7 @@ position = Vector2(2914, 804)
 [connection signal="retry_pressed" from="GameOver" to="." method="_on_game_over_retry_pressed"]
 [connection signal="level_select_pressed" from="pausemenu" to="." method="_on_pausemenu_level_select_pressed"]
 [connection signal="retry_pressed" from="pausemenu" to="." method="_on_pausemenu_retry_pressed"]
+[connection signal="objective_completed" from="Objective/Generator_groups" to="." method="_on_generator_groups_objective_completed"]
 [connection signal="player_died" from="Player" to="." method="_on_player_player_died"]
 [connection signal="player_goal" from="Player" to="." method="_on_player_player_goal"]
-[connection signal="objective_completed" from="Objective/Generator_groups" to="." method="_on_generator_groups_objective_completed"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

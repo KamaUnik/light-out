@@ -269,6 +269,8 @@ size = Vector2(62, 56)
 [sub_resource type="CircleShape2D" id="CircleShape2D_jej6c"]
 
 [node name="Player" type="CharacterBody2D"]
+collision_layer = 33
+collision_mask = 33
 script = ExtResource("1_g2els")
 SPEED = 610
 JMP = -1010
@@ -353,6 +355,8 @@ position = Vector2(0, 9)
 shape = SubResource("RectangleShape2D_d2wvv")
 
 [node name="goalbox" parent="." instance=ExtResource("11_3v2ag")]
+collision_layer = 256
+collision_mask = 256
 
 [node name="HealBox" type="Area2D" parent="."]
 collision_layer = 128
