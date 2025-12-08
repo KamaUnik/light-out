@@ -680,6 +680,8 @@ _data = {
 
 [node name="Level2" type="Node2D"]
 script = ExtResource("1_3bmlt")
+level_name = "Level 2"
+this_scene_path = "res://scenes/level_2.tscn"
 
 [node name="sketch" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.3137255)
@@ -1139,3 +1141,4 @@ position = Vector2(-187, -18)
 [connection signal="player_died" from="Player" to="." method="_on_player_player_died"]
 [connection signal="player_goal" from="Player" to="." method="_on_player_player_goal"]
 [connection signal="objective_completed" from="Objective/Generator_groups" to="." method="_on_generator_groups_objective_completed"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
