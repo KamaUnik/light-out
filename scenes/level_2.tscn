@@ -655,6 +655,7 @@ level_name = "Level 2"
 this_scene_path = "res://scenes/level_2.tscn"
 
 [node name="sketch" type="Sprite2D" parent="."]
+visible = false
 modulate = Color(1, 1, 1, 0.3137255)
 position = Vector2(3729, -1728)
 scale = Vector2(4, 4)
@@ -782,37 +783,37 @@ position = Vector2(1214, 235)
 position = Vector2(1533, 235)
 
 [node name="enemy3" parent="Enemies" instance=ExtResource("16_igmy8")]
-position = Vector2(5316, -2846)
+position = Vector2(5316, -2832)
 
 [node name="enemy4" parent="Enemies" instance=ExtResource("16_igmy8")]
-position = Vector2(2950, -3349)
+position = Vector2(2950, -3339)
 
 [node name="enemy5" parent="Enemies" instance=ExtResource("16_igmy8")]
-position = Vector2(2849, -1634)
+position = Vector2(2849, -1615)
 
 [node name="enemy6" parent="Enemies" instance=ExtResource("16_igmy8")]
-position = Vector2(1019, -1629)
+position = Vector2(1010, -1617)
 
 [node name="enemy7" parent="Enemies" instance=ExtResource("16_igmy8")]
-position = Vector2(629, -2009)
+position = Vector2(629, -2000)
 
 [node name="enemy8" parent="Enemies" instance=ExtResource("16_igmy8")]
-position = Vector2(3956, -3861)
+position = Vector2(3956, -3858)
 
 [node name="enemy9" parent="Enemies" instance=ExtResource("16_igmy8")]
-position = Vector2(4325, -3861)
+position = Vector2(4325, -3858)
 
 [node name="enemy10" parent="Enemies" instance=ExtResource("16_igmy8")]
-position = Vector2(2952, -3935)
+position = Vector2(2952, -3920)
 
 [node name="enemy11" parent="Enemies" instance=ExtResource("16_igmy8")]
-position = Vector2(5310, -3987)
+position = Vector2(5310, -3982)
 
 [node name="enemy12" parent="Enemies" instance=ExtResource("16_igmy8")]
-position = Vector2(7330, -2715)
+position = Vector2(7330, -2703)
 
 [node name="enemy13" parent="Enemies" instance=ExtResource("16_igmy8")]
-position = Vector2(7732, -2716)
+position = Vector2(7732, -2704)
 
 [node name="enemy14" parent="Enemies" instance=ExtResource("16_igmy8")]
 position = Vector2(-208, -1103)
