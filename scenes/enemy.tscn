@@ -61,19 +61,23 @@ shape = SubResource("RectangleShape2D_nenq2")
 position = Vector2(47, 8)
 rotation = 1.5707964
 target_position = Vector2(16, 0)
+collision_mask = 33
 
 [node name="Rayright" type="RayCast2D" parent="."]
 position = Vector2(31, 1)
 target_position = Vector2(22, 0)
+collision_mask = 33
 
 [node name="Raybottomleft" type="RayCast2D" parent="."]
 position = Vector2(-47, 9)
 rotation = 1.5707964
 target_position = Vector2(15, 0)
+collision_mask = 33
 
 [node name="RayLeft" type="RayCast2D" parent="."]
 position = Vector2(-31, 1)
 target_position = Vector2(-22, 0)
+collision_mask = 33
 
 [node name="Hitbox" parent="." instance=ExtResource("3_4ra3w")]
 collision_mask = 0
