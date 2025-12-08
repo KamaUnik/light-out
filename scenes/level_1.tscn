@@ -645,7 +645,6 @@ visible = false
 [node name="TileMapSet" type="Node2D" parent="."]
 
 [node name="Darkness" type="CanvasModulate" parent="TileMapSet"]
-visible = false
 position = Vector2(0, 1)
 color = Color(0.0295066, 0.0295066, 0.0295066, 1)
 
@@ -764,7 +763,6 @@ position = Vector2(79, 269)
 layer = 2
 
 [node name="TextureRect" type="TextureRect" parent="Transition"]
-visible = false
 offset_right = 1600.0
 offset_bottom = 900.0
 texture = SubResource("GradientTexture2D_w8frs")

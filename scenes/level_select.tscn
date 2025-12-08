@@ -132,26 +132,26 @@ text = "Level Select"
 label_settings = SubResource("LabelSettings_3shnc")
 
 [node name="Prototype" parent="." instance=ExtResource("3_2epne")]
-offset_left = 409.0
-offset_top = 265.0
-offset_right = 609.0
-offset_bottom = 345.0
+offset_left = 1050.0
+offset_top = 680.0
+offset_right = 1250.0
+offset_bottom = 760.0
 labelname = "Prototype"
 levelpath = "res://scenes/prototypelevel.tscn"
 
 [node name="level1" parent="." instance=ExtResource("3_2epne")]
-offset_left = 663.0
-offset_top = 420.0
-offset_right = 863.0
-offset_bottom = 500.0
+offset_left = 362.0
+offset_top = 275.0
+offset_right = 562.0
+offset_bottom = 355.0
 labelname = "Level 1"
 levelpath = "res://scenes/level_1.tscn"
 
 [node name="level2" parent="." instance=ExtResource("3_2epne")]
-offset_left = 954.0
-offset_top = 598.0
-offset_right = 1154.0
-offset_bottom = 678.0
+offset_left = 660.0
+offset_top = 276.0
+offset_right = 860.0
+offset_bottom = 356.0
 labelname = "Level 2"
 levelpath = "res://scenes/level_2.tscn"
 
