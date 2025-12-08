@@ -4,6 +4,7 @@ extends CharacterBody2D
 @onready var light:PointLight2D = $PointLight2D
 @onready var sprite:Sprite2D =  $Sprite2D
 @onready var audio:AudioStreamPlayer = $AudioStreamPlayer
+@onready var healbox = $Area2D
 var cap = 5.0
 var fill = 0.0
 var state = false
@@ -24,6 +25,7 @@ func filling(delta):
 	bar.value = fill
 
 func activate():
+	healbox.monitorable= true
 	audio.play()
 	sprite.frame=1
 	light.enabled=true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://bvpthgtsv2mvk"]
+[gd_scene load_steps=39 format=3 uid="uid://bvpthgtsv2mvk"]
 
 [ext_resource type="Script" uid="uid://cp6l5qbbnhwyg" path="res://script/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://cqdlndqea0rax" path="res://asset/sprites/JohnTofuSheet.png" id="3_d2wvv"]
@@ -266,6 +266,8 @@ light_mode = 1
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d2wvv"]
 size = Vector2(62, 56)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_jej6c"]
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_g2els")
 SPEED = 610
@@ -352,6 +354,13 @@ shape = SubResource("RectangleShape2D_d2wvv")
 
 [node name="goalbox" parent="." instance=ExtResource("11_3v2ag")]
 
+[node name="HealBox" type="Area2D" parent="."]
+collision_layer = 128
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HealBox"]
+shape = SubResource("CircleShape2D_jej6c")
+
 [node name="TimerGroup" type="Node2D" parent="."]
 
 [node name="Invul" type="Timer" parent="TimerGroup"]
@@ -381,6 +390,7 @@ volume_db = -0.22
 [connection signal="area_entered" from="RoomDetector" to="." method="_on_room_detector_area_entered"]
 [connection signal="received_damage" from="HurtBox" to="." method="_on_hurt_box_received_damage"]
 [connection signal="enter_goal" from="goalbox" to="." method="_on_goalbox_enter_goal"]
+[connection signal="area_entered" from="HealBox" to="." method="_on_heal_box_area_entered"]
 [connection signal="timeout" from="TimerGroup/Invul" to="." method="_on_invul_timeout"]
 [connection signal="timeout" from="TimerGroup/CooldownTimer" to="." method="_on_cooldown_timer_timeout"]
 [connection signal="timeout" from="TimerGroup/HurtTimer" to="." method="_on_hurt_timer_timeout"]

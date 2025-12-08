@@ -60,12 +60,9 @@ func firing_laser(delta:float):
 	fuelBar.update_value(fuel)
 	flashlight.firing_laser(is_firing_laser)
 
-
 func push_player():
 	var add_v = (get_global_mouse_position() - global_position).normalized()*500
 	velocity = velocity-add_v
-
-
 
 func _physics_process(delta: float):
 	if Input.is_action_just_pressed("pausemenu"):
@@ -126,13 +123,19 @@ func _on_cooldown_timer_timeout() -> void:
 	flashlight.is_usable(true)
 	is_cooling = false
 
+func heal():
+	if hp==3:
+		return
+	hp=3
+	healthBar.update_value(hp)
+
 func hurt():
 	if is_death:
 		return
 	if invul:
 		return
 	hp-=1
-	hurt_audio .play()
+	hurt_audio.play()
 	sprite.modulate = Color("ff4636ff")
 	if hp ==0:
 		animplay.play("death")
@@ -145,13 +148,10 @@ func hurt():
 	invultimer.start()
 	hurttimer.start()
 	
-	
-		
 func _on_invul_timeout() -> void:
 	invul=false
 	#Animsprite.modulate = Color("White")
 	sprite.modulate = Color("White")
-
 
 func _on_hurt_box_received_damage() -> void:
 	hurt()
@@ -170,3 +170,6 @@ func _on_goalbox_enter_goal() -> void:
 	at_goal=true
 	rotf.player_is_dead()
 	player_goal.emit()
+
+func _on_heal_box_area_entered(_area: Area2D) -> void:
+	heal()

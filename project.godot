@@ -90,6 +90,7 @@ pausemenu={
 2d_physics/layer_5="pickup"
 2d_physics/layer_6="World2"
 2d_physics/layer_7="Hurt/Hit"
+2d_physics/layer_8="Heal"
 
 [physics]
 

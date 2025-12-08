@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dqh1mlqu0822r"]
+[gd_scene load_steps=14 format=3 uid="uid://dqh1mlqu0822r"]
 
 [ext_resource type="Texture2D" uid="uid://ctac1agww0nlp" path="res://asset/sprites/Generatorsheet.png" id="1_5yxne"]
 [ext_resource type="Script" uid="uid://c5h6psf31w0qo" path="res://script/generator.gd" id="1_w5vnv"]
@@ -15,8 +15,8 @@ colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_ef8yp"]
 gradient = SubResource("Gradient_w5vnv")
-width = 120
-height = 120
+width = 330
+height = 335
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 metadata/_snap_enabled = true
@@ -36,6 +36,9 @@ _data = {
 &"activate": SubResource("Animation_kgmdj")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_4pjfl"]
+radius = 164.68454
+
 [node name="Generator" type="CharacterBody2D"]
 light_mask = 4
 collision_layer = 33
@@ -54,7 +57,6 @@ position = Vector2(-1, 8)
 shape = SubResource("RectangleShape2D_w5vnv")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(-14, 10)
 enabled = false
 color = Color(0.05490196, 1, 0, 1)
 texture = SubResource("GradientTexture2D_ef8yp")
@@ -84,3 +86,12 @@ libraries = {
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_4pjfl")
 volume_db = 2.101
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 128
+collision_mask = 128
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_4pjfl")
